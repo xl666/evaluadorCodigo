@@ -3,11 +3,11 @@ services:
   app:
     env_file:
       - app.env
-    build: .
+    build: ./app
     restart: always
     container_name: app
     volumes:
-      - ./sistema_evaluacion_codigo:/code
+      - ./app/sistema_evaluacion_codigo:/code
     depends_on:
       - bd
   bd:
@@ -16,7 +16,7 @@ services:
     env_file:
       - bd.env
     volumes:
-      - ../data:/var/lib/mysql
+      - ./data:/var/lib/mysql
 
   nginx:
     image: nginx
@@ -25,7 +25,7 @@ services:
       - 8000:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - ./sistema_evaluacion_codigo/static_production:/static
-      - ./sistema_evaluacion_codigo/media:/media
+      - ./app/sistema_evaluacion_codigo/static_production:/static
+      - ./app/sistema_evaluacion_codigo/media:/media
     depends_on:  
       - app
