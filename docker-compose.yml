@@ -8,8 +8,6 @@ services:
     container_name: app
     volumes:
       - ./sistema_evaluacion_codigo:/code
-    ports:
-      - "8000:8000"
     depends_on:
       - bd
   bd:
@@ -19,3 +17,15 @@ services:
       - bd.env
     volumes:
       - ../data:/var/lib/mysql
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./sistema_evaluacion_codigo/static_production:/static
+      - ./sistema_evaluacion_codigo/media:/media
+    depends_on:  
+      - app
