@@ -110,10 +110,6 @@ def inyect(programa, entrada, maxTime=2): # 2 segundos máximos
 
 
 if __name__ == '__main__':
-    import os
-    with open("servicioInyeccion.pid", "w") as f: 
-        print(os.getpid())
-        f.write(str(os.getpid()))
     dem = Monitor(sys.argv[1])
     dem.run()
         

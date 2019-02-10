@@ -9,14 +9,17 @@ echo DATABASE_PASSWORD=$DATABASE_PASSWORD >> .env
 echo DATABASE_HOST=$DATABASE_HOST >> .env
 echo DATABASE_PORT=$DATABASE_PORT >> .env
 
+# lanzar servicio de inyeccion con usuario limitado
+su -c 'python -u api/servicioInyeccion.py 9030' limitado &
 
 echo "Esperando a iniciar servidor"
-
-
 
 sleep 15
 
 echo "Espera terminada, ahora si iniciando..."
+
+
+
 
 python -u manage.py makemigrations --settings sistema_evaluacion_codigo.production
 python -u manage.py migrate --settings sistema_evaluacion_codigo.production
