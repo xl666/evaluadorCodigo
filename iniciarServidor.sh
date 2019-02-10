@@ -23,5 +23,5 @@ echo "Espera terminada, ahora si iniciando..."
 
 python -u manage.py makemigrations --settings sistema_evaluacion_codigo.production
 python -u manage.py migrate --settings sistema_evaluacion_codigo.production
-python -u manage.py runserver --settings sistema_evaluacion_codigo.production 0.0.0.0:8000
-#gunicorn --chdir sistema_evaluacion_codigo --bind :8000 sistema_evaluacion_codigo.wsgi:application
+#python -u manage.py runserver --settings sistema_evaluacion_codigo.production 0.0.0.0:8000
+gunicorn --bind :8000 sistema_evaluacion_codigo.wsgi:application
