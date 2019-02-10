@@ -1,0 +1,48 @@
+<div class="col-sm-12">
+	<label class="control-label">
+		Descripción
+	</label>
+	<pre>{{ejercicio.ejercicio.descripcion}}</pre>
+</div>
+{% if ejercicio.ejercicio.entrada %}
+<div class="col-sm-12">
+	<label class="control-label">
+		Entrada
+	</label>
+	<pre>{{ejercicio.ejercicio.entrada}}</pre>
+</div>
+{% endif %}
+{% if ejercicio.ejercicio.salida %}
+<div class="col-sm-12">
+	<label class="control-label">
+		Salida
+	</label>
+	<pre>{{ejercicio.ejercicio.salida}}</pre>
+</div>
+{% endif %}
+<div class="col-sm-12">
+	<label class="control-label">
+		Ejemplo de entrada
+	</label>
+	<pre>{{ejercicio.ejercicio.ejemplo_entrada}}</pre>
+</div>
+<div class="col-sm-12">
+	<label class="control-label">
+		Ejemplo de salida
+	</label>
+	<pre>{{ejercicio.ejercicio.ejemplo_salida}}</pre>
+</div>
+
+{% if ejercicio.ejercicio.archivo_apoyo %}
+<div class="col-sm-12">
+	<a href="{{ ejercicio.ejercicio.archivo_apoyo.url}}">Descargar archivo de apoyo</a>
+</div>
+{% endif %}
+{% if respuesta_anterior.archivo_respuesta %}
+<div class="col-sm-12">
+	<label class="control-label">
+		Actualmente
+	</label>
+	<a href="{{respuesta_anterior.archivo_respuesta.url}}">{{respuesta_nombre}}</a>
+</div>
+{% endif %}

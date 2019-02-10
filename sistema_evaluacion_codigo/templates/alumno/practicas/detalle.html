@@ -1,0 +1,68 @@
+{% extends "alumno/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%}  {{practica.nombre}} {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block contenido%}
+<section class="content">
+	{% if error %}
+	<div class="alert alert-danger alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		{{ error }}
+	</div>
+	{% endif %}
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+					<span><strong>{{practica.nombre}}</strong>
+						<label class="pull-right">
+							<i class="fa fa-calendar"></i>
+							<small>{{practica.inicio}} - {{practica.termino}} </small>
+						</label>
+					</span>
+			</div>
+		</div>
+		<div class="box-body">
+
+			{% if practica.descripcion %}
+			<div class="col-sm-12 ">
+				<label class="control-label">
+					Descripción
+				</label>
+				<p>{{practica.descripcion}}</p>
+			</div>
+			{% endif %}
+			<div class="col-sm-12">
+				<label class="control-label">
+					Ejercicios
+				</label>
+				<ul class="todo-list ui-sortable" id="field_wrapper">
+					{% for ejercicio, puntaje_obtenido in ejercicios_practica %}
+					<li>
+						<h4 class="text"><a href="{{ejercicio.get_ejercicio_url}}">{{ejercicio.ejercicio}}</a></h4>
+						<br>
+						<small>
+							<a href="{{ejercicio.get_ejercicio_url}}"><font color="black">{{ejercicio.ejercicio.descripcion|truncatechars:300}}</font></a>
+						</small>
+						<div class="pull-right">
+							<h4><b>{{puntaje_obtenido}}/{{ejercicio.puntaje}}</b></h4>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+		</div>
+		<div class="box-footer">
+			<div class="col-md-12">
+				<a href="{{curso_activo.get_listado_practicas_url}}" class="btn btn-primary">
+					<i class="fa fa-arrow-left"></i>
+					Regresar
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+{% block scripts%}
+{% endblock %}

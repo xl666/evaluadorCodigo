@@ -1,0 +1,57 @@
+
+Archivos del API
+-compilador.py
+-compiladorLisp.sh
+-evaluador.py
+-inyectar.py
+-unirFuentes.py
+
+Requerimientos de software
+-SO Linux (probablemente también MacOS)
+-sbcl
+-openjdk (o cualquier jdk)
+-g++ (puede ser otro)
+-gcc (puede ser otro)
+-swipl
+-python (dependiendo del SO puede ser python2 o 3)
+
+Funciones importantes
+
+######################################################################################
+- resultado, archivoComp = compilador.compile(pathArchivoFuente, directorioSalida)
+ *Si el archivo es de un lenguaje interpretado sólo copia el fuente a la salida
+ Entradas:
+ *pathArchivofuente: es el archivo con path(relativo o absoluto) del archivo fuente (debe ser un archivo de texto)
+ *DirectorioSalida: path del directorio donde se guardará el archivo compilado. OJO es sólo el directorio
+ *Opcionalmente se puede pasar en el tercer param el compilador de c++ a usar en el cuarto param el compilador de C a usar
+ Salidas:
+ *resultado: es un booleano que indica si la compilación salió bien o no
+ *archivoComp: nombre del archivo compilado resultante, es sólo el nombre sin path
+#####################################################################################
+
+- resultado = evaluador.evaluar(pathArchivoCompilado, pathArchivoCasos)
+  Entradas:
+  *Obvias
+  *Hay un tercer parámetro entero que indica el tiempo máximo en segundos que se evalúa cada caso, por defecto es 5
+  *Hay un cuarto parámetro que indica el puerto sobre el cual el servicio de inyección se está ejecutando (el servicio debe ser de un usuario con permisos limitados)
+  Salidas:
+  *resultado: lista de un tamaño igual al número de casos, en cada caso puede haber 1 de 4 resultados:
+  	      -True: el programa resolvió el caso
+	      -False: el programa no resolvió el caso
+	      -'Runtime error': el caso provocó un error de runtime
+	      -'Time exeeded': el caso agotó su tiempo de ejecución
+####################################################################################################
+
+-resultado = unirFuentes.generarFuenteJava(pathArchivoZip, directorioDestino)
+	   *El archivo fuente final siempre se llama Main.java
+	   *Para que funcione bien la rutina todos los archivos deben estar en el mismo package o no debe haber ningún package
+	   Entradas:
+	   *Obvias
+
+	   Salidas:
+	   *resultado: True si todo salió bien o False si hubo errores.
+	   	       Se pueden dar errores por las siguientes causas:
+		       -El archivo no es de extensión zip/ZIP
+		       -El archivo no es realmente un zip (sólo le pusieron la extensión)
+		       -En el zip no hay ningún archivo Main.java
+		       -En el zip hay archivos no de texto

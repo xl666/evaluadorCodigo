@@ -1,0 +1,72 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Cursos {% endblock %}
+{% block encabezado%}Sistema de evaluación automática de código{% endblock %}
+{% block head%}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+{% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Cursos</strong></span>
+			</div>
+		</div>
+		<div class="box-body">
+			<div class="col-sm-12 table-responsive">
+				<h4>Da clic en el nrc del curso para ir a su página principal</h4>
+				<table id="example2" class="table table-bordered table-striped" role="grid"
+					   aria-describedby="example1_info">
+					<thead>
+					<tr>
+						<th style="width: 10px">NRC</th>
+						<th>Experiencia educativa</th>
+						<th>Licenciatura</th>
+						<th>Periodo</th>
+						<th>Bloque</th>
+						<th>Sección</th>
+						<th>Estado</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for curso in cursos %}
+					<tr>
+						<td><a href="{{curso.get_absolute_url}}" id="{{ejercicio.id}}" value="{{ejercicio.nombre}}"
+							   class="">{{curso.nrc}}</a>
+						</td>
+						<td>{{curso.exp_educativa}}<a href="{{curso.get_edit_url}}"><span
+							class="fa fa-edit"></span></a></td>
+						<td>{{curso.licenciatura}}</td>
+						<td>{{curso.periodo}}</td>
+						<td>{{curso.bloque}}</td>
+						<td>{{curso.seccion}}</td>
+						{%if curso.activo%}
+						<td>activo</td>
+						{% else %}
+						<td>concluido</td>
+						{% endif %}
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="box-footer">
+			<div class="col-md-12">
+				<a href="{% url 'agregar_curso'%}" class="btn btn-primary pull-right">
+					<i class="fa fa-plus"></i>
+					Crear curso
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/dataTable.js' %}"></script>
+{% endblock %}

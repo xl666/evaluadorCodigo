@@ -1,0 +1,93 @@
+{% extends "alumno/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Inscribir curso {% endblock %}
+{% block head%}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+{% endblock %}
+
+{% block encabezado%}
+Sistema de evaluación automática de código
+{% endblock %}
+{% block contenido%}
+<section class="content">
+		{% include "general/info_error.html" %}
+		<div class="box box-widget">
+			<div class="box-header with-border">
+				<div class="header-block">
+					<span><strong>Inscribir curso</strong></span>
+				</div>
+			</div>
+			<div class="box-body">
+
+				<div class="col-sm-12 table-responsive">
+					<h4>Por favor selecciona el curso que deseas inscribir</h4>
+					<table id="example2" class="table table-bordered table-striped" role="grid"
+						   aria-describedby="example1_info">
+						<thead>
+						<tr>
+							<th style="width: 10px">NRC</th>
+							<th>Experiencia Educativa</th>
+							<th>Bloque</th>
+							<th>Sección</th>
+							<th>Académico</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for curso in cursos_todos %}
+						<tr>
+							<td>{{curso.nrc}}</td>
+							<td><a href="" data-toggle="modal" id="{{curso.id}}" data-target="#modal-default"
+								   onclick="insertarIdCurso(this)">{{curso.exp_educativa}}</a></td>
+							<td>{{curso.bloque}}</td>
+							<td>{{curso.seccion}}</td>
+							<td>{{curso.academico}}</td>
+						</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+				<div class="modal fade in" id="modal-default" style="display: none;">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+								<h4 class="modal-title">Ingrese el código de inscripción al curso</h4>
+							</div>
+							<form action="{% url 'inscribir_curso' %}" method="post">
+								{% csrf_token %}
+								<div class="modal-body">
+									<div style="margin-bottom: 25px" class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-pencil"></i></span>
+										<input id="login-username" type="text" class="form-control" name="codigo"
+											   value=""
+											   placeholder="Código de inscripción" required>
+										<input type="hidden" name="curso" id="curso">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success pull-left" data-dismiss="modal">
+										Cancelar
+									</button>
+									<button type="submit" class="btn btn-success">Confirmar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+</section>
+{% endblock %}
+{% block scripts%}
+<script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/dataTable.js' %}"></script>
+<script src="{% static 'js/inscribirCurso.js' %}"></script>
+{% endblock %}

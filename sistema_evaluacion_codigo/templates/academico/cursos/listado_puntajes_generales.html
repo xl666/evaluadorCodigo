@@ -1,0 +1,68 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Puntajes generales {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block head%}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/dataTable.css' %}">
+{% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Puntajes generales</strong></span>
+			</div>
+		</div>
+		<div class="box-body">
+
+			<div class="col-sm-12 table-responsive">
+				<table id="example1" class="table table-bordered table-striped">
+					<thead>
+					<tr role="row">
+						<th>Nombre del alumno</th>
+						{% for practica in practicas %}
+						<th><a href="{{practica.get_puntajes_url}}">{{practica.nombre}}</a></th>
+						{% endfor %}
+						{% for examen in examenes %}
+						<th><a href="{{examen.get_puntajes_url}}">{{examen.nombre}}</a></th>
+						{% endfor %}
+					</tr>
+					</thead>
+					<tbody>
+					{% for puntajes_practicas, puntajes_examenes, alumno in puntajes %}
+					<tr role="row">
+						<td> {{alumno.user.last_name}} {{alumno.user.first_name}}</td>
+						{% for puntaje in puntajes_practicas%}
+						<td>{{puntaje}}</td>
+						{% endfor %}
+						{% for puntaje in puntajes_examenes%}
+						<td>{{puntaje}}</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<div class="box-footer">
+			<div class="col-md-12">
+				<a href="{{curso_activo.get_absolute_url}}" class="btn btn-primary">
+					<i class="fa fa-arrow-left"></i>
+					Regresar
+				</a>
+
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/dataTable.js' %}"></script>
+{% endblock %}

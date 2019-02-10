@@ -1,0 +1,39 @@
+.deletelink {
+    padding-left: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("http://localhost/static/img/icon-deletelink.svg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-position-x: 0px;
+    background-position-y: 1px;
+    background-size: auto auto;
+}
+
+.addlink {
+   padding-left: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("http://localhost/static/img/icon-addlink.svg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-position-x: 0px;
+    background-position-y: 1px;
+    background-size: auto auto;
+}
+
+.editlink {
+    padding-left: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("http://localhost/static/img/icon-changelink.svg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-position-x: 0px;
+    background-position-y: 1px;
+    background-size: auto auto;
+}
+

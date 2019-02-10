@@ -1,0 +1,34 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% block tittle%} Editar curso {% endblock %}
+{% block encabezado%}Sistema de evaluación automática de código{% endblock %}
+{% block contenido%}
+<section class="content">
+	{% include "general/info_error_form.html" %}
+	{% include "general/info_error.html" %}
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Editar curso</strong></span>
+			</div>
+		</div>
+		<form method="post" action="{{ curso_activo.get_edit_url}}" enctype="multipart/form-data">
+			<div class="box-body">
+				<div class="col-md-12">
+					{% csrf_token %}
+					{{form|crispy}}
+				</div>
+			</div>
+			<div class="box-footer">
+				<div class="col-sm-12">
+					<a href="{% url 'listado_cursos' %}" class="btn btn-primary">
+						<i class="fa fa-arrow-left"></i>
+						Regresar
+					</a>
+					<input type="submit" class="btn btn-primary pull-right" value="Guardar cambios">
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}

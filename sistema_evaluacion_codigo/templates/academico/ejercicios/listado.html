@@ -1,0 +1,79 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Ejercicios {% endblock %}
+{% block encabezado%}Sistema de evaluación automática de código{% endblock %}
+{% block head%}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+{% endblock %}
+
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Ejercicios</strong></span>
+			</div>
+		</div>
+		<div class="box-body">
+			<div class="col-sm-12 table-responsive">
+				<h4>Da clic en nombre del ejercicio para ver detalle</h4>
+				<table id="example2" class="table table-bordered table-striped" role="grid"
+					   aria-describedby="example1_info">
+					<thead>
+					<tr>
+						<th style="width: 10px">Nombre</th>
+						<th>Descripción</th>
+						<th>Temas</th>
+						<th>Estado</th>
+						<th>Autor</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for ejercicio in ejercicios %}
+					<tr>
+						<td><a href="{{ejercicio.get_absolute_url}}" id="{{ejercicio.id}}" value="{{ejercicio.nombre}}"
+							   class="">{{ejercicio.nombre}}</a></td>
+						<td>{{ejercicio.descripcion|truncatechars:120}}
+							{% if academico == ejercicio.academico %}
+							<a href="{{ejercicio.get_edit_url}}"><span class="fa fa-edit"></span></a>
+							{% endif %}
+						</td>
+						<td>
+							<ul>
+								{% for tema in ejercicio.temas.all %}
+								<li>{{tema}}</li>
+								{% endfor %}
+							</ul>
+						</td>
+						{% if ejercicio.publico %}
+						<td>Público</td>
+						{% else %}
+						<td>Privado</td>
+						{% endif %}
+						<td>{{ejercicio.academico}}</td>
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="box-footer">
+			<div class="col-md-12">
+				<a href="{% url 'agregar_ejercicio'%}" class="btn btn-primary pull-right">
+					<i class="fa fa-plus"></i>
+					Crear ejercicio
+				</a>
+			</div>
+		</div>
+
+	</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/dataTable.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+<div class="col-sm-12 table-responsive">
+	<table id="example1" class="table table-bordered table-striped">
+		<thead>
+		<tr role="row">
+			<th>Nombre del alumno</th>
+			{% for ejercicio in ejercicios %}
+			<th>{{ejercicio.ejercicio.nombre}}</th>
+			{% endfor %}
+		</tr>
+		</thead>
+		<tbody>
+		{% for respuestas_todas, alumno in respuestas %}
+		<tr role="row">
+			<td> {{alumno.user.last_name}} {{alumno.user.first_name}}</td>
+			{% for respuesta in respuestas_todas%}
+			{% if respuesta == "Sin entrega del estudiante" %}
+			<td>{{respuesta}}</td>
+			{% else %}
+			<td><a href="{{respuesta.get_absolute_url}}">{{respuesta}}/{{respuesta.ejercicio.puntaje}}</a></td>
+			{% endif %}
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,75 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Editar examen {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block contenido%}
+<section class="content">
+	{% include "general/info_error_form.html" %}
+	{% include "general/info_error.html" %}
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Editar examen</strong></span>
+			</div>
+		</div>
+		<form method='post' action="{{examen.get_edit_url}}" role="form"> {% csrf_token %}
+			<div class="box-body">
+				<div class="form-group col-md-12">
+					<a href="{{examen.get_activar_url}}" class="btn btn-primary pull-right"
+					   onclick="return confirm('Una vez que inicie el examen ya no podrá ser editado, ¿desea continuar?');">
+
+						Iniciar examen
+					</a>
+				</div>
+
+				<div class="col-md-12">
+					{% csrf_token %}
+					{{form|crispy}}
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label  requiredField">
+						Ejercicios<span class="asteriskField">*</span>
+					</label>
+					<ul class="todo-list ui-sortable" id="field_wrapper">
+						{% for ejercicio in ejercicios_examen%}
+						<li id="" class="remove">
+							<input type="number" name="puntajes[]" value="{{ejercicio.puntaje}}" placeholder="Puntaje"
+								   min="1" required>
+							<input type="hidden" name="ejercicios[]" value="{{ejercicio.ejercicio.id}}">
+							<spa class="text"> {{ejercicio.ejercicio}}</spa>
+							<div class="tools">
+								<i class="fa fa-trash-o remove_button" id="remove_button"> </i>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="form-group col-md-12">
+					<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-default" class="addlink">Agregar
+						ejercicio</a>
+				</div>
+
+			</div>
+			<div class="box-footer">
+				<div class="col-sm-12">
+					<a href="{{curso_activo.get_listado_examenes_url}}" class="btn btn-primary">
+						<i class="fa fa-arrow-left"></i>
+						Regresar
+					</a>
+					<input type="submit" class="btn btn-primary pull-right" value="Guardar">
+				</div>
+			</div>
+		</form>
+	</div>
+	{% include "academico/compartido/modal_agregar_ejercicio.html" %}
+</section>
+{% endblock %}
+
+{% block scripts%}
+<script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/agregarEjercicio.js' %}"></script>
+<script src="{% static 'js/dataTable.js' %}"></script>
+{{ form.media }}
+{% endblock %}

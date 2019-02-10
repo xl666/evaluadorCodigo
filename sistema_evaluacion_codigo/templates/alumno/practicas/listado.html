@@ -1,0 +1,51 @@
+{% extends "alumno/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Prácticas {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Prácticas</strong></span>
+			</div>
+		</div>
+		<div class="box-body">
+			<div class="col-sm-12" style="margin-top:10px">
+				<ul class="todo-list ui-sortable" id="field_wrapper">
+					{% for practica, estado, label in practicas %}
+					<li>
+						<h4 class="text"><a href="{{practica.get_absolute_url}}">{{practica.nombre}}</a></h4 >
+						<small class="label {{label}}">
+							{{estado}}
+						</small>
+						<br>
+						<small>
+							<i class="fa fa-calendar">
+							</i>
+							{{practica.inicio}} - {{practica.termino}}
+						</small>
+						<div class="pull-right">
+
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+		</div>
+		<div class="box-footer">
+			<div class="col-md-12">
+				<a href="{{curso_activo.get_absolute_url}}" class="btn btn-primary">
+					<i class="fa fa-arrow-left"></i>
+					Regresar
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

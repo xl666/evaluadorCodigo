@@ -1,0 +1,98 @@
+{% extends "anonimo/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% block tittle%} Registro de alumno {% endblock %}
+
+{% block contenido %}
+<section class="content">
+	<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-info">
+			<div class="panel-heading" style="background:#003366; color:white;">
+				<div class="panel-title">Registrate como alumno</div>
+			</div>
+			<div style="padding-top:30px" class="panel-body">
+				{% include "general/info_error.html" %}
+				{% include "general/info_success.html" %}
+				<form id="loginform" method='post' action="{% url 'registrar_alumno' %}" class="form-horizontal"
+					  role="form">{% csrf_token %}
+					<div class="form-group">
+						<label for="username" class="col-md-3 control-label">Usuario</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="username" placeholder=""
+								   maxlength="150" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="first_name" class="col-md-3 control-label">Nombre(s)</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="name" maxlength="30" placeholder="" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="last_name" class="col-md-3 control-label">Apellidos</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="last_name" maxlength="150" placeholder=""
+								   required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="matricula" class="col-md-3 control-label">Matrícula</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="matricula" placeholder="S10000000"
+								   maxlength="9" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="licenciatura" class="col-md-3 control-label">Licenciatura</label>
+						<div class="col-md-9 controls">
+							<select class="select form-control col-md-12" name="licenciatura" required>
+								<option value selected>---------</option>
+								{% for licenciatura in licenciaturas %}
+								<option value="{{licenciatura.id}}">{{licenciatura.licenciatura}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-md-3 control-label">Correo</label>
+						<div class="col-md-9">
+							<input type="email" class="form-control" name="email" maxlength="254" placeholder=""
+								   required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-md-3 control-label">Contraseña</label>
+						<div class="col-md-9">
+							<input type="password" class="form-control" maxlength="128" name="password" placeholder=""
+								   required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="conf_password" class="col-md-3 control-label">Confirmación de contraseña</label>
+						<div class="col-md-9">
+							<input type="password" class="form-control" maxlength="128" name="conf_password"
+								   placeholder="" required>
+						</div>
+					</div>
+					<div style="margin-top:10px" class="form-group">
+						<div class="col-sm-12 controls">
+							<p style=" text-align: center;">
+								<button type="submit" class="btn btn-success">Guardar</button>
+							</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12 control">
+							<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+								¿Ya tienes una cuenta?
+								<a href="{% url 'login' %}" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+									Inicia sesión
+								</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

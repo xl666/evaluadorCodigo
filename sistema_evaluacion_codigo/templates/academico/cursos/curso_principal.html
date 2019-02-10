@@ -1,0 +1,73 @@
+{% extends "academico/compartido/base.html" %}
+{% block tittle%} {{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}) {% endblock %}
+{% block encabezado%} {{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}) {% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="col-lg-6 col-md-6 col-xs-12">
+		<div class="small-box bg-aqua">
+			<div class="inner">
+				<h2>Prácticas</h2>
+				<h2>{{curso_activo.get_num_practicas_activas}}</h2>
+			</div>
+			<div class="icon">
+				<i class="ion ion-compose"></i>
+			</div>
+			<a href="{{curso_activo.get_listado_practicas_url}}" class="small-box-footer">
+				Ver
+				<i class="fa fa-arrow-circle-right">
+				</i>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-xs-12">
+		<div class="small-box bg-purple">
+			<div class="inner">
+				<h2>Exámenes</h2>
+				<h2>{{curso_activo.get_num_examenes_activos}}</h2>
+			</div>
+			<div class="icon">
+				<i class="ion ion-document-text"></i>
+			</div>
+			<a href="{{curso_activo.get_listado_examenes_url}}" class="small-box-footer">
+				Ver
+				<i class="fa fa-arrow-circle-right">
+				</i>
+			</a>
+		</div>
+
+	</div>
+	<div class="col-lg-6 col-md-6  col-xs-12">
+		<div class="small-box bg-blue">
+			<div class="inner">
+				<h2>Puntajes</h2>
+				<h2><br></h2>
+			</div>
+			<div class="icon">
+				<i class="ion ion-stats-bars"></i>
+			</div>
+			<a href="{{curso_activo.get_listado_puntajes_url}}" class="small-box-footer">
+				Ver
+				<i class="fa fa-arrow-circle-right">
+				</i>
+			</a>
+		</div>
+
+	</div>
+	<div class="col-lg-6 col-md-6  col-xs-12">
+		<div class="small-box bg-green">
+			<div class="inner">
+				<h2>Integrantes</h2>
+				<h2>{{curso_activo.get_num_integrantes}}</h2>
+			</div>
+			<div class="icon">
+				<i class="ion ion-person"></i>
+			</div>
+			<a href="{{curso_activo.get_listado_integrantes_url}}" class="small-box-footer">
+				Ver
+				<i class="fa fa-arrow-circle-right">
+				</i>
+			</a>
+		</div>
+	</div>
+</section>
+{% endblock %}

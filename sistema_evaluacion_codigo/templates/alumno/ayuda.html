@@ -1,0 +1,164 @@
+{% extends "alumno/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block tittle%} Ayuda{% endblock %}
+
+{% block encabezado%}
+Sistema de evaluación automática de código
+{% endblock %}
+
+{% block contenido%}
+<section class="content-header">
+	<h1>Ayuda</h1>
+</section>
+
+<section class="content">
+
+	<h3>Generalidades entrada/salida</h3>
+
+	<p>La revisión de los programas se realiza de forma automática, por lo que es necesario apegarse a ciertas normas de
+		entrada y salida.</p>
+
+	<p>Las entradas son dadas a los programas, por lo que el programa sólo debe preocuparse por leer dicha entrada. Las
+		entradas se dan a través de la entrada estándar (stdin). Por su parte, las salidas que genera el
+		programa deben imprimirse en la salida estándar (stdout).</p>
+
+	<p>
+		Para leer de la entrada estándar:
+	<ul>
+		<li>Python: var = input()</li>
+		<li>C: tipo var; scanf("%tipo\n", &var);</li>
+		<li>C++: tipo var; cin >> var;</li>
+		<li>Java: Scanner scan = new Scanner(System.in); String s = scan.next(); int i = scan.nextInt(); etc..</li>
+	</ul>
+	</p>
+
+	<p>
+		Para inprimir en la salida estándar (con un salto de línea):
+	<ul>
+		<li>Python: print('%s %s' % (var1, var2))</li>
+		<li>C: printf("%tipo %tipo\n", var1, var2);</li>
+		<li>C++: cout<< var1 << " " << var2 << "\n";</li>
+		<li>Java: System.out.println("" + var1 + " " + var2);</li>
+	</ul>
+	NOTA: Para python se utiliza python3 en el servidor, por lo que print se utiliza como una función cualquiera
+	</p>
+
+	<h3>Entrada</h3>
+
+	<p>
+		En cada problema se especifica (o se sobre entiende) la forma en que deben hacerse las lecturas. Por ejemplo, si
+		en la definición del problema dice algo así (para llenar una matriz): <br/>
+		Entrada <br/>
+		En la primera línea se te dará el número de filas y columnas (F, C) separadas por un espacio. Las siguientes F
+		líneas contendrán C números separados por un espacio (la especificación del espacio en realidad sirve para saber
+		que hay varias lecturas) <br/><br/>. Para cada lenguaje se hará de la siguiente forma: <br/>
+	<ul>
+		<li>python: <br/>
+			filas = int(input())<br/>
+			columnas = int(input())<br/>
+			matriz = [[0 for x in range(columnas)] for x in range(filas)]<br/>
+			for i in range(filas):<br/>
+			&nbsp;&nbsp;&nbsp; for j in range(columnas):<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matriz[i][j] = int(input())<br/><br/>
+
+			NOTA: observar las conversiones de tipo, por defecto input() regresa una cadena.
+		</li>
+
+
+		<li>
+			C: <br/>
+			int f, c;<br/>
+			int mat[MAX][MAX];<br/>
+			scanf("%d\n%d\n",&f,&c);<br/>
+			for (int i=1; i<=f; i++)<br/>
+			{<br/>
+			&nbsp;&nbsp;&nbsp; for (int j=1; j<=c; j++)<br/>
+			&nbsp;&nbsp;&nbsp; {<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scanf("%d\n",&mat[i][j]);<br/>
+			&nbsp;&nbsp;&nbsp; }<br/>
+			}<br/>
+			NOTA: observar el uso del carácter de salto de línea, de preferencia debe ponerse después
+			de haber leído algo
+		</li>
+
+		<li>
+			C++ : <br/>
+			int f, c;<br/>
+			int mat[MAX][MAX];<br/>
+			cin >> f; <br/>
+			cin >> c; <br/>
+			for (int i=1; i<=f; i++)<br/>
+			{<br/>
+			&nbsp;&nbsp;&nbsp; for (int j=1; j<=c; j++)<br/>
+			&nbsp;&nbsp;&nbsp; {<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cin >> mat[i][j]; <br/>
+			&nbsp;&nbsp;&nbsp; }<br/>
+			}<br/>
+		</li>
+
+		<li>
+			Java: <br/>
+			Scanner scan = new Scanner(System.in); <br/>
+			int f = scan.nextInt(); <br/>
+			int c = scan.nextInt(); <br/>
+			int[][] mat = new int[f][c]; <br/>
+			for(int i = 0; i < f; i++) <br/>
+			{<br/>
+			&nbsp;&nbsp;&nbsp; for(int j = 0; j < c; j++)<br/>
+			&nbsp;&nbsp;&nbsp; {<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mat[i][j] = scan.nextInt(); <br/>
+			&nbsp;&nbsp;&nbsp; }<br/>
+			}<br/>
+		</li>
+	</ul>
+	</p>
+
+	<h3>Salida</h3>
+
+	<p>
+		Para la salida que debe imprimir el programa, basta con apegarse al formato específico que menciona el problema,
+		esto incluye la impresi&oacute;n de espacios y saltos de l&iacute;nea tal cual se menciona (el ejemplo de salida
+		de cada problema es muy &uacute;til para esto). Es importante tambi&eacute;n no imprimir nada de m&aacute;s como
+		por ejemplo una cadena para pedir que se ingrese un valor
+	<p/>
+
+	<h3>Subida del programa</h3>
+	<p>
+		Sólo se debe subir un archivo, dicho archivo es el código fuente de su programa ó, para el lenguaje de programación java,
+		un archivo .zip(todos los archivos deben estar en el mismo package o no debe haber ningún package). Es muy importante que dependiendo del lenguaje de programaci&oacute;n se coloque la extensi&oacute;n adecuada (.py, .c, .cpp, .java,
+		.prolog, .lisp, .zip).
+		Este archivo ser&aacute; compilado en el servidor. Si el c&oacute;digo subido tiene alg&uacute;n error de
+		compilaci&oacute;n &eacute;ste se reportar&aacute;. As&iacute; mismo es importante que el nombre de su archivo
+		NO contenga espacios. De preferencia abstengance de subir un archivo a menos que se est&eacute; seguro de que
+		compila bien y de que resuelve al menos el caso de ejemplo.
+	</p>
+
+	<h3>Evaluación</h3>
+
+	<p>
+		Su programa será evaluado con los casos de pruba definidos por el académico. Dependiendo del puntaje asígnado al
+		ejercicio y el número de casos de prueba de resuelva, será el puntaje obtenido. Por ejemplo: Si un académico
+		definió un ejercicio con 5 casos de prueba y un puntaje de 100, cada caso de prueba valdrá 20, es decir, si se obtiene un
+		puntaje de 80 es porque su respuesta habrá resuelto 4 de los 5 casos.
+
+		Al evaluarse un programa pueden suceder
+		4 cosas diferentes:
+	<ul>
+		<li>El programa soluciona todos los casos: obtiene todo el puntaje asignado al ejercicio </li>
+		<li>El programa soluciona algunos casos: obtiene el puntaje proporcional al número de casos resueltos </li>
+		<li>El programa no soluciona ningún caso: no obtiene ningún punto</li>
+		<li>El programa produce un error de runtime, compilación o tiempo excedido: se le notifica el error y no obtiene
+			ningún punto</li>
+	</ul>
+
+	<h4><b>Con la finalidad de mantener su mayor puntaje obtenido, el sistema sólo reemplazará sus respuestas cuando obtenga
+	un puntaje más alto.</b></h4>
+	<p/>
+</section>
+
+{% endblock %}
+
+{% block scripts%}
+{% endblock %}

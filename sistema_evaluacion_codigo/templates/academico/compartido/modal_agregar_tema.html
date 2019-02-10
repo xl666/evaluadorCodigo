@@ -1,0 +1,25 @@
+<div class="modal fade in" id="modal-default" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 class="modal-title">Agregar tema</h4>
+			</div>
+			<form method="post" id="agregar_tema">
+				{% csrf_token %}
+				<div class="modal-body">
+					<div style="margin-bottom: 25px" class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
+						<input id="tema" type="text" class="form-control" name="tema" placeholder="Tema" required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success pull-left" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-success" form="agregar_tema">Guardar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

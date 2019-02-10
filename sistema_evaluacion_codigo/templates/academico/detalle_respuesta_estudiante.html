@@ -1,0 +1,62 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Detalle de respuesta {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Detalle de respuesta</strong></span>
+			</div>
+		</div>
+		<div class="box-body">
+			<div class="col-sm-12">
+				<label class="control-label">
+					Ejercicio
+				</label>
+				<p>{{respuesta.ejercicio.ejercicio}}</p>
+			</div>
+			<div class="col-sm-12">
+				<label class="control-label">
+					Estudiante
+				</label>
+				<p>{{respuesta.alumno}}</p>
+			</div>
+			<div class="col-sm-12">
+				<label class="control-label">
+					Fecha de enviado
+				</label>
+				<p>{{respuesta.fecha_enviado}}</p>
+			</div>
+			<div class="col-sm-12">
+				<label class="control-label">
+					Puntaje obtenido
+				</label>
+				<p>{{respuesta.puntaje_obtenido}}/{{respuesta.ejercicio.puntaje}}</p>
+			</div>
+			{% if respuesta.error %}
+			<div class="col-sm-12">
+				<label class="control-label">
+					Error detectado
+				</label>
+				<p>{{respuesta.error}}</p>
+			</div>
+			{% endif %}
+			<div class="col-sm-12">
+				<label class="control-label">
+					Código fuente
+				</label>
+				<pre>{{codigo}}</pre>
+			</div>
+		</div>
+		<div class="box-footer">
+			<div class="form-group col-sm-12">
+				{% include "general/btn_regresar.html" %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+

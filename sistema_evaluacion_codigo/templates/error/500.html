@@ -1,0 +1,24 @@
+{% extends "anonimo/compartido/base.html" %}
+{% block titulo %}500{% endblock %}
+
+{% block contenido %}
+
+<section class="content">
+	<div class="error-page">
+		<h2 class="headline text-red">500</h2>
+		<div class="error-content">
+			<h3><i class="fa fa-warning text-red"></i> Oops! Algo salió mal.</h3>
+			<p>
+				Vamos a trabajar en arreglar esto de inmediato.
+				<br>
+				Mientras tanto, puedes <a href="{% url 'inicio'%}">regresar al inicio.</a>
+			</p>
+
+		</div>
+		<!-- /.error-content -->
+	</div>
+	<!-- /.error-page -->
+</section>
+<!-- /.content -->
+
+{% endblock %}

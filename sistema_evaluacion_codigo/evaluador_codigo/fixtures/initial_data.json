@@ -1,0 +1,1668 @@
+[
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$hjYdSWMa7SpV$SCruTYb6oVcNzftwyXDblDH/338ZhgRj/+YHeuKQ/mk=",
+      "last_login": "2018-09-23T05:05:11.220Z",
+      "is_superuser": true,
+      "username": "susana",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-09-10T05:03:22.916Z",
+      "is_student": false,
+      "is_teacher": false,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$eR4vbJcRsQW1$E0+fyJSx0vqXvybvjqIxF5rmsXXm2iZCLWYLD8EbM/k=",
+      "last_login": "2018-09-25T07:19:06.529Z",
+      "is_superuser": false,
+      "username": "susana14",
+      "first_name": "Susana",
+      "last_name": "González Portilla",
+      "email": "susana-140294@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-10T05:45:17.243Z",
+      "is_student": true,
+      "is_teacher": false,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$HyNSomGaWYnt$jPQDzfK7dAiluMgF0DY7gy7WqopmWlVo1yvRyfsVnj8=",
+      "last_login": "2018-09-25T07:10:43.199Z",
+      "is_superuser": false,
+      "username": "xavier",
+      "first_name": "Héctor Xavier",
+      "last_name": "Limón Riaño",
+      "email": "xavier12@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-10T05:53:41Z",
+      "is_student": false,
+      "is_teacher": true,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$rLzEhThLmBav$/6VhqlH4/7t1bEmZBHfNOUcRtHVbS4Q82ioANu/tdNU=",
+      "last_login": "2018-09-23T05:46:14.503Z",
+      "is_superuser": false,
+      "username": "angelsg",
+      "first_name": "Ángel Juan",
+      "last_name": "Sánchez García",
+      "email": "angel@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-10T05:54:45Z",
+      "is_student": false,
+      "is_teacher": true,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$i8FpquKzum6s$hNSCgxQ6rydysZ5PpbrYWmAHVvmy4p8yk+/C4NYmCVE=",
+      "last_login": "2018-09-23T05:46:30.360Z",
+      "is_superuser": false,
+      "username": "angeles",
+      "first_name": "María de los Ángeles",
+      "last_name": "Arenas Valdés",
+      "email": "angeles@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-10T05:55:45Z",
+      "is_student": false,
+      "is_teacher": true,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$7tHN4bnsuFnl$aVyt53COMWgbEuhdu+t7dfMa1MCw8yYmoB9E4wlooEs=",
+      "last_login": "2018-09-23T05:47:31.811Z",
+      "is_superuser": false,
+      "username": "revo",
+      "first_name": "Juan Carlos",
+      "last_name": "Pérez Arriaga",
+      "email": "elrevo@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-15T03:42:42Z",
+      "is_student": false,
+      "is_teacher": true,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$nekZhaLlA2i4$BSc7R+2qR980KlDdwvgOyNdQ24EbmSFyFv4WYzG5bKE=",
+      "last_login": "2018-09-23T05:48:28.035Z",
+      "is_superuser": false,
+      "username": "ocharan",
+      "first_name": "Octavio",
+      "last_name": "Ocharán Hernández",
+      "email": "ocharan@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-15T22:16:48Z",
+      "is_student": false,
+      "is_teacher": true,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$hCM029gnGVH4$jINVWd3YBAvjCDDjFufBjMP1fnBvNA+n20qb2maqH/Y=",
+      "last_login": "2018-09-25T07:22:27.429Z",
+      "is_superuser": false,
+      "username": "carlos",
+      "first_name": "Erasmo Carlos",
+      "last_name": "Torres Sanromán",
+      "email": "carlos@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-18T07:01:42.837Z",
+      "is_student": true,
+      "is_teacher": false,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$BWj4FmeFmX1o$sV6iTO7EXGipku5rMQCFItQnZO8D0sQf8nO8Wt2NIjI=",
+      "last_login": "2018-09-25T07:09:07.393Z",
+      "is_superuser": false,
+      "username": "alan",
+      "first_name": "Jorge Alan",
+      "last_name": "Barrera Arcos",
+      "email": "alan-barrera-arcos@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-21T04:33:33.244Z",
+      "is_student": true,
+      "is_teacher": false,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$RWTHbezq79r3$zO8TI9mVyDhO5K56YikTSc3cTBqnBzZJF3PIsBnGai8=",
+      "last_login": "2018-09-25T07:28:34.147Z",
+      "is_superuser": false,
+      "username": "victor",
+      "first_name": "Victor Hugo",
+      "last_name": "Hernández Hoyos",
+      "email": "victor@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-21T04:34:08.730Z",
+      "is_student": true,
+      "is_teacher": false,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$HJBN9A1uZYU0$iEmYHnys9feTBK7sUF/U4/Wj116lFzA/oKP4OTzGGEQ=",
+      "last_login": "2018-09-21T14:40:56.573Z",
+      "is_superuser": false,
+      "username": "gerardo0579",
+      "first_name": "Francisco Gerardo",
+      "last_name": "Mares solano",
+      "email": "gerardo0579@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-21T14:23:10Z",
+      "is_student": false,
+      "is_teacher": true,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 12,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$R2PUGUMQpv42$zdIaMMnMmcofPjBEnhcFRkepi5Hcg90h9+n+YQE24tI=",
+      "last_login": "2018-09-21T14:42:12.510Z",
+      "is_superuser": false,
+      "username": "Susana13",
+      "first_name": "Susana",
+      "last_name": "Gonzalez Portilla",
+      "email": "susana-140294@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-21T14:28:23.783Z",
+      "is_student": true,
+      "is_teacher": false,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.user",
+    "pk": 13,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$4YcjBieQ5vRa$lR/car8KR9+/sCZCFx2Ykvno3UKoznb4at/q525ITvU=",
+      "last_login": "2018-09-25T07:29:29.936Z",
+      "is_superuser": false,
+      "username": "omar",
+      "first_name": "Omar",
+      "last_name": "Cornelio",
+      "email": "omar@hotmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-24T06:04:57.685Z",
+      "is_student": true,
+      "is_teacher": false,
+      "img_profile": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "evaluador_codigo.licenciatura",
+    "pk": 1,
+    "fields": {
+      "licenciatura": "Ingeniería de software"
+    }
+  },
+  {
+    "model": "evaluador_codigo.licenciatura",
+    "pk": 2,
+    "fields": {
+      "licenciatura": "Redes y servicios de cómputo"
+    }
+  },
+  {
+    "model": "evaluador_codigo.licenciatura",
+    "pk": 3,
+    "fields": {
+      "licenciatura": "Tecnologías computacionales"
+    }
+  },
+  {
+    "model": "evaluador_codigo.periodo",
+    "pk": 1,
+    "fields": {
+      "periodo": "Febrero - Julio 2018"
+    }
+  },
+  {
+    "model": "evaluador_codigo.periodo",
+    "pk": 2,
+    "fields": {
+      "periodo": "Agosto 2018 - Enero 2019"
+    }
+  },
+  {
+    "model": "evaluador_codigo.academico",
+    "pk": 1,
+    "fields": {
+      "user": 3,
+      "licenciaturas": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.academico",
+    "pk": 2,
+    "fields": {
+      "user": 4,
+      "licenciaturas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.academico",
+    "pk": 3,
+    "fields": {
+      "user": 5,
+      "licenciaturas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.academico",
+    "pk": 4,
+    "fields": {
+      "user": 6,
+      "licenciaturas": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.academico",
+    "pk": 5,
+    "fields": {
+      "user": 7,
+      "licenciaturas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.academico",
+    "pk": 6,
+    "fields": {
+      "user": 11,
+      "licenciaturas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.experienciaeducativa",
+    "pk": 1,
+    "fields": {
+      "exp_educativa": "Introducción a la programación"
+    }
+  },
+  {
+    "model": "evaluador_codigo.experienciaeducativa",
+    "pk": 2,
+    "fields": {
+      "exp_educativa": "Programación"
+    }
+  },
+  {
+    "model": "evaluador_codigo.experienciaeducativa",
+    "pk": 3,
+    "fields": {
+      "exp_educativa": "Estructuras de datos"
+    }
+  },
+  {
+    "model": "evaluador_codigo.experienciaeducativa",
+    "pk": 4,
+    "fields": {
+      "exp_educativa": "Paradigmas de programación"
+    }
+  },
+  {
+    "model": "evaluador_codigo.tema",
+    "pk": 1,
+    "fields": {
+      "tema": "Búsquedas"
+    }
+  },
+  {
+    "model": "evaluador_codigo.tema",
+    "pk": 2,
+    "fields": {
+      "tema": "Colas"
+    }
+  },
+  {
+    "model": "evaluador_codigo.tema",
+    "pk": 3,
+    "fields": {
+      "tema": "Pilas"
+    }
+  },
+  {
+    "model": "evaluador_codigo.tema",
+    "pk": 12,
+    "fields": {
+      "tema": "Prolog"
+    }
+  },
+  {
+    "model": "evaluador_codigo.tema",
+    "pk": 13,
+    "fields": {
+      "tema": "Estructuras de datos"
+    }
+  },
+  {
+    "model": "evaluador_codigo.tema",
+    "pk": 14,
+    "fields": {
+      "tema": "Estructuras de control"
+    }
+  },
+  {
+    "model": "evaluador_codigo.tema",
+    "pk": 15,
+    "fields": {
+      "tema": "Listas lisp"
+    }
+  },
+  {
+    "model": "evaluador_codigo.curso",
+    "pk": 1,
+    "fields": {
+      "exp_educativa": 4,
+      "nrc": "24521",
+      "periodo": 2,
+      "activo": true,
+      "bloque": "6",
+      "seccion": "1",
+      "academico": 1,
+      "codigo_inscripcion": "12345",
+      "licenciatura": 1
+    }
+  },
+  {
+    "model": "evaluador_codigo.curso",
+    "pk": 2,
+    "fields": {
+      "exp_educativa": 1,
+      "nrc": "23467",
+      "periodo": 2,
+      "activo": true,
+      "bloque": "1",
+      "seccion": "1",
+      "academico": 3,
+      "codigo_inscripcion": "12345",
+      "licenciatura": 1
+    }
+  },
+  {
+    "model": "evaluador_codigo.curso",
+    "pk": 3,
+    "fields": {
+      "exp_educativa": 3,
+      "nrc": "12345",
+      "periodo": 2,
+      "activo": true,
+      "bloque": "1",
+      "seccion": "1",
+      "academico": 1,
+      "codigo_inscripcion": "12345",
+      "licenciatura": 1
+    }
+  },
+  {
+    "model": "evaluador_codigo.curso",
+    "pk": 4,
+    "fields": {
+      "exp_educativa": 2,
+      "nrc": "65421",
+      "periodo": 2,
+      "activo": true,
+      "bloque": "3",
+      "seccion": "2",
+      "academico": 4,
+      "codigo_inscripcion": "12345",
+      "licenciatura": 1
+    }
+  },
+  {
+    "model": "evaluador_codigo.curso",
+    "pk": 5,
+    "fields": {
+      "exp_educativa": 4,
+      "nrc": "76521",
+      "periodo": 2,
+      "activo": true,
+      "bloque": "4",
+      "seccion": "1",
+      "academico": 5,
+      "codigo_inscripcion": "12345",
+      "licenciatura": 1
+    }
+  },
+  {
+    "model": "evaluador_codigo.curso",
+    "pk": 6,
+    "fields": {
+      "exp_educativa": 3,
+      "nrc": "90861",
+      "periodo": 2,
+      "activo": true,
+      "bloque": "3",
+      "seccion": "1",
+      "academico": 2,
+      "codigo_inscripcion": "12345",
+      "licenciatura": 1
+    }
+  },
+  {
+    "model": "evaluador_codigo.curso",
+    "pk": 7,
+    "fields": {
+      "exp_educativa": 4,
+      "nrc": "12345",
+      "periodo": 1,
+      "activo": true,
+      "bloque": "6",
+      "seccion": "3",
+      "academico": 6,
+      "codigo_inscripcion": "asdfghjkl",
+      "licenciatura": 1
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "1444e037-2bef-470e-8e22-092668bbc7bd",
+    "fields": {
+      "nombre": "Suma en un Triángulo",
+      "publico": true,
+      "academico": 2,
+      "descripcion": "Consideramos un triángulo de números en el cuál un número aparece en la primera línea, dos en la segunda línea etc. Desarrolla un programa que calcule la suma más grande de números que aparecen sobre los caminos empezando de la cima hasta la base, de tal manera que: en cada camino el siguiente número está en la fila de abajo, más precisamente, o directamente abajo o abajo y un lugar a la derecha. El número de filas siempre es positivo, pero menor a 100 y todos los numero del triángulo están entre 0 y 99.",
+      "entrada": "En la primera línea un entero n que representa el número de filas del triángulo, seguido de n filas donde por cada fila se obtiene el contenido de la línea",
+      "salida": "Un número que representa la suma más larga de los caminos posibles.",
+      "ejemplo_entrada": "4\r\n1\r\n1 2\r\n4 1 2\r\n2 3 1 1",
+      "ejemplo_salida": "9",
+      "casos_prueba": "ejercicios/casos_de_prueba/1444e037-2bef-470e-8e22-092668bbc7bd.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        3
+      ],
+      "temas": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+    "fields": {
+      "nombre": "Palabras al revés",
+      "publico": true,
+      "academico": 1,
+      "descripcion": "Hacer un programa que reciba una cadena y devuelva una nueva cadena donde las palabras están al revés con respecto a la cadena de entrada",
+      "entrada": "string",
+      "salida": "string al revés",
+      "ejemplo_entrada": "hola mundo cruel",
+      "ejemplo_salida": "leurc odnum aloh",
+      "casos_prueba": "ejercicios/casos_de_prueba/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52.txt",
+      "archivo_apoyo": "ejercicios/archivos_apoyo/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52.png",
+      "experiencias_educativas": [
+        3
+      ],
+      "temas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "602f92d0-6ee9-4631-9b1c-54c60a161692",
+    "fields": {
+      "nombre": "Antepasado prolog",
+      "publico": true,
+      "academico": 2,
+      "descripcion": "Dada la siguiente base de conocimientos, agrega una regla prolog que deremine si X es antepasado de Y. El nombre de la regla debe ser antepasado/2\r\n\r\nBase de conocimientos:\r\n\r\npadre(juan, jesus).\r\nmadre(maria, jesus).\r\npadre(stan, juan).\r\nmadre(lore, juan).\r\npadre(dios, stan).\r\nmadre(espiritu, stan).\r\npadre(devil, lore).\r\nmadre(luz, lore).\r\n\r\nmain():- \r\nread(X), \r\nread(Y), \r\nantepasado(X, Y), \r\nwrite(\"true\"). \r\nmain():- \r\nwrite(\"false\").",
+      "entrada": "",
+      "salida": "",
+      "ejemplo_entrada": "stan.\r\njesus.",
+      "ejemplo_salida": "true",
+      "casos_prueba": "ejercicios/casos_de_prueba/602f92d0-6ee9-4631-9b1c-54c60a161692.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        4
+      ],
+      "temas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "62ac7bbb-d7a3-4563-acd4-a4e9a019e78a",
+    "fields": {
+      "nombre": "Longitud prolog",
+      "publico": false,
+      "academico": 1,
+      "descripcion": "Dada la siguiente base de conocimientos, agrega una regla prolog que determine la longitud de una lista L. La regla debe llamarse longitud/2, el resultado debe ser unificado en el segundo parámetro.\r\nBase de conocimientos:\r\nmain():- \r\nread(X), \r\nlongitud(X, R), \r\nwrite(R).",
+      "entrada": "",
+      "salida": "",
+      "ejemplo_entrada": "[1, 2, 3, 4].",
+      "ejemplo_salida": "4",
+      "casos_prueba": "ejercicios/casos_de_prueba/62ac7bbb-d7a3-4563-acd4-a4e9a019e78a.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        3
+      ],
+      "temas": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "739eb8a1-2a35-4561-b3e0-50bbf8ca7eba",
+    "fields": {
+      "nombre": "Secuencia creciente máxima",
+      "publico": true,
+      "academico": 2,
+      "descripcion": "Sea n un entero positivo y sea a1, a2,...,an una secuencia de enteros positivos. Decimos que ai<ai+1<...<aj es una secuencia creciente y decimos que es máxima si no es parte de otra secuencia más larga. Por ejemplo si n=7 y a=(3, 1, 4, 1, 5, 9, 2) entonces (1, 5) es una secuencia creciente, pero no es máxima por que es parte de (1, 5, 9).\r\nEscribe un programa que encuentre la longitud s de la secuencia creciente máxima y la posición p donde inicia.",
+      "entrada": "En la primera línea el entero n. en la segunda línea n enteros entre 1 y 1000,000 separados por un espacio y finalizada con un salto de línea.",
+      "salida": "Los enteros s y p separado por un espacio y al final un salto de línea, donde s es la longitud de de la secuencia creciente máxima y p la posición donde inicia.",
+      "ejemplo_entrada": "7\r\n3 1 4 1 5 9 2",
+      "ejemplo_salida": "3 4",
+      "casos_prueba": "ejercicios/casos_de_prueba/739eb8a1-2a35-4561-b3e0-50bbf8ca7eba.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        3
+      ],
+      "temas": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "97c5d885-c1c2-474c-a778-467804a021e2",
+    "fields": {
+      "nombre": "Centro histórico",
+      "publico": true,
+      "academico": 3,
+      "descripcion": "Tu viaje a la ciudad de Veracruz se está terminando, ¡sin embargo tú aun quieres ir a varios lugares más antes de irte! En un mapa (que compraste al llegar a la ciudad) has marcado los lugares que aun te faltan por visitar en el centro histórico y, ya que te queda poco tiempo, estás tratando de encontrar una buena ruta para ir a todos ellos. Como no tienes ningún medio de transporte disponible y por lo tanto tienes que caminar, has decidido que la mejor ruta es la que te haga caminar la menor cantidad de cuadras.\r\n\r\nTu tarea en este momento es, dado el número de lugares N que deseas visitar y las coordenadas (x, y) en las que se encuentran ubicados cada uno de ellos, debes encontrar la ruta más corta que interconecte a todos, y determinar cuál es el número de mínimo cuadras que deberás caminar para visitarlos.\r\nEl número mínimo de cuadras que deberás caminar es 14. Nota que para ir de (0, 0) a (1, 1), por ejemplo, no puedes cruzar en diagonal, sino que tienes que caminar dos cuadras.\r\n\r\nRestricciones\r\n\r\n1 ≤ N ≤ 10 0 ≤ x, y ≤ 150",
+      "entrada": "Línea 1: Contiene un entero representando el número N de lugares. Siguientes N líneas: Cada línea contiene dos enteros x y y que representan la coordenada en que cada lugar se encuentra. No habrá coordenadas repetidas.",
+      "salida": "Línea 1: Un entero representando el número mínimo de cuadras.",
+      "ejemplo_entrada": "5 \r\n0 0 \r\n1 1 \r\n2 4 \r\n4 2 \r\n5 5",
+      "ejemplo_salida": "14",
+      "casos_prueba": "ejercicios/casos_de_prueba/97c5d885-c1c2-474c-a778-467804a021e2.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        3
+      ],
+      "temas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "ad41a9f7-4cad-4581-8ffe-6432f5ba9f14",
+    "fields": {
+      "nombre": "Lista con 2 listas",
+      "publico": true,
+      "academico": 4,
+      "descripcion": "Hacer una función que recibe una lista x, la función debe regresar una lista de listas con 2 elementos, de la forma:\r\n((1 2 3) x)",
+      "entrada": "",
+      "salida": "",
+      "ejemplo_entrada": "(\"casa\" 3)",
+      "ejemplo_salida": "((1 2 3) (\"casa\" 3))",
+      "casos_prueba": "ejercicios/casos_de_prueba/ad41a9f7-4cad-4581-8ffe-6432f5ba9f14.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        4
+      ],
+      "temas": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+    "fields": {
+      "nombre": "Bolita",
+      "publico": true,
+      "academico": 1,
+      "descripcion": "Seguramente alguna vez  has visto a los magos hacer el truco de ¿dónde quedo la bolita? En el cual, debajo de una de entre tres nueces hay una bolita y el mago realiza varios movimientos, intercambiando  la posición de las nueces hasta que uno no recuerda dónde quedó.\r\nA ti siempre te ha llamado la atención este juego y ahora deseas hacerlo más difícil, en vez de tres, utilizarás cuatro nueces.\r\nCada movimiento consiste en intercambiar un par de nueces, por lo que sólo existen 6 movimientos básicos: \r\nIntercambiar la 1 por la 2, la 1 por la 3, la 1 por la 4, a 2 por la 3, la 2 por la 4 y la 3 por la 4. A cada uno de estos movimientos los nombraremos del 1 al 6 según aparecen arriba. Para poder realizar el truco, debes conocer en que posición quedo la bolita después de realizar una secuencia de estos movimientos.\r\nPROBLEMA\r\nDeberás realizar un programa que conociendo en qué nuez se encuentra la bolita inicialmente y la serie de movimientos llevados a cabo, calcule la posición final de la bolita.",
+      "entrada": "En la primera línea el número P, que indica la nuez en la que se encuentra la bolita (de 1 a 4), en la segunda línea el número 1M5000 de movimientos a realizar.  En las siguientes M líneas un número indicando que movimiento  (del 1 al 6) es el que se va a realizar.",
+      "salida": "Tu programa debe escribir un solo número indicando la nuez en la que se quedó la bolita seguido de un salto de línea.",
+      "ejemplo_entrada": "2\r\n3\r\n4\r\n2\r\n3",
+      "ejemplo_salida": "4",
+      "casos_prueba": "ejercicios/casos_de_prueba/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        1
+      ],
+      "temas": [
+        14
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "e6e2e46b-28da-4648-9fef-ffc015b7db15",
+    "fields": {
+      "nombre": "Garfield",
+      "publico": true,
+      "academico": 4,
+      "descripcion": "Como puedes observar Garfield es un gato gordo y holgazán, a él sólo le gusta comer y dormir, así es, no le gusta ir por su comida, él camina lo menos posible para llegar a ella;  pero si esta distancia es muy larga, Garfield puede morir de hambre en el camino.\r\nComo Garfield es muy holgazán, su dueño deja tazones con comida por toda la casa, esperando que así Garfield no muera de hambre mientras no está, él sabe que Garfield nunca morirá de hambre siempre y cuando camine al tazón de comida más cercano a su posición.\r\nEl lugar donde se encuentra Garfield tenía muchos platos llenos, pero después de algunos horas los platos empiezan a quedar vacíos, ayuda a Garfield a encontrar el plato más cercano a su posición actual, para que no muera de hambre.\r\nConsideraciones:\r\n*Garfield sólo puede caminar en 4 direcciones: Norte, Sur, Este y Oeste.\r\n*Garfield no puede caminar encima de platos vacíos debido a que está muy gordo y no puede mover sus patas con libertad.\r\n*Garfield siempre puede llegar a un tazón de comida.\r\n*Nunca habrá dos tazones en la misma posición.\r\n*Las coordenadas estarán entre  1<= F , C <=500, siempre serán números enteros.\r\n*La habitación donde se encuentra Garfield está representada por un rectángulo, dividido en filas y columnas, en cada celda de la habitación habrá un carácter y cada carácter representa algo distinto:\r\n\t“.” : No hay tazón en esa posición.\r\n\t“#” : Es un tazón vacío.\r\n“*”: Es un tazón con comida\r\n“G”: Es la posición inicial de Garfield\r\n\r\n*1<=F,C<=500",
+      "entrada": "En la primera línea se te dará el número de filas y columnas (F, C) que tiene la habitación.\r\nLas siguientes F líneas contendrán C caracteres que forman la habitación.",
+      "salida": "El menor número de pasos para que Garfield alcance un tazón.",
+      "ejemplo_entrada": "4 4\r\n#\t.\t.\t*\r\n.\t.\t*\t*\r\n.\t#\t.\t.\r\n#\t#\tG\t.",
+      "ejemplo_salida": "2",
+      "casos_prueba": "ejercicios/casos_de_prueba/e6e2e46b-28da-4648-9fef-ffc015b7db15.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        3
+      ],
+      "temas": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "e6e67ea4-3073-4393-8283-77114ead4674",
+    "fields": {
+      "nombre": "Longitud lista",
+      "publico": true,
+      "academico": 1,
+      "descripcion": "Hacer una función que determina la longitud de una lista",
+      "entrada": "",
+      "salida": "",
+      "ejemplo_entrada": "(1 2 3)",
+      "ejemplo_salida": "3",
+      "casos_prueba": "ejercicios/casos_de_prueba/e6e67ea4-3073-4393-8283-77114ead4674.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        4
+      ],
+      "temas": [
+        15
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "e814fe53-575b-4416-bc14-9d197737169d",
+    "fields": {
+      "nombre": "Pertenece a la lista",
+      "publico": true,
+      "academico": 4,
+      "descripcion": "Hacer una función que determina si un elemento x pertenece a la lista",
+      "entrada": "",
+      "salida": "",
+      "ejemplo_entrada": "(\"casa\" \"perro\" \"gato\")\r\n\"perro\"",
+      "ejemplo_salida": "T",
+      "casos_prueba": "ejercicios/casos_de_prueba/e814fe53-575b-4416-bc14-9d197737169d.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        3
+      ],
+      "temas": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejercicio",
+    "pk": "f4d5bf2f-574e-407d-9389-9f3ce60172b6",
+    "fields": {
+      "nombre": "Ruta",
+      "publico": true,
+      "academico": 2,
+      "descripcion": "Dada la siguiente base de conocimientos, agrega una regla prolog que determine si existe una ruta entre los puntos X y Y. Considera que si es posible llegar de X a Y también es posible llegar de Y a X. La regla debe llamarse ruta/2.\r\n\r\nBase de conocimientos:\r\n\r\nruta_directa(xalapa,coatepec).\r\nruta_directa(coatepec, allende).\r\nruta_directa(allende, xico).\r\nruta_directa(banderilla, xalapa).\r\nruta_directa(perote, vigas).\r\nruta_directa(vigas, cruz_blanca).\r\nruta_directa(puebla,perote).\r\n\r\nmain():-\r\nread(X),\r\nread(Y),\r\nruta(X, Y),\r\nwrite(\"true\").\r\nmain():-\r\nwrite(\"false\").",
+      "entrada": "",
+      "salida": "",
+      "ejemplo_entrada": "xalapa.\r\nxico.",
+      "ejemplo_salida": "True",
+      "casos_prueba": "ejercicios/casos_de_prueba/f4d5bf2f-574e-407d-9389-9f3ce60172b6.txt",
+      "archivo_apoyo": "",
+      "experiencias_educativas": [
+        4
+      ],
+      "temas": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.practica",
+    "pk": 4,
+    "fields": {
+      "nombre": "Práctica 1",
+      "curso": 3,
+      "inicio": "2018-09-22T02:16:57Z",
+      "termino": "2018-09-30T02:17:02Z",
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.practica",
+    "pk": 5,
+    "fields": {
+      "nombre": "Práctica 1",
+      "curso": 1,
+      "inicio": "2018-09-22T07:18:17Z",
+      "termino": "2018-09-30T07:18:19Z",
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.practica",
+    "pk": 6,
+    "fields": {
+      "nombre": "Primer  práctica",
+      "curso": 2,
+      "inicio": "2018-09-21T06:19:39Z",
+      "termino": "2018-09-30T06:19:39Z",
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.practica",
+    "pk": 7,
+    "fields": {
+      "nombre": "Primer práctica",
+      "curso": 6,
+      "inicio": "2018-09-21T06:25:43Z",
+      "termino": "2018-09-30T06:25:44Z",
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.practica",
+    "pk": 8,
+    "fields": {
+      "nombre": "Pràctica mortal",
+      "curso": 7,
+      "inicio": "2018-09-21T14:41:12Z",
+      "termino": "2018-09-29T14:41:16Z",
+      "descripcion": "vas a morir si fallas"
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 7,
+    "fields": {
+      "practica": 7,
+      "ejercicio": "5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 8,
+    "fields": {
+      "practica": 8,
+      "ejercicio": "602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "puntaje": 2
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 9,
+    "fields": {
+      "practica": 5,
+      "ejercicio": "602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 10,
+    "fields": {
+      "practica": 5,
+      "ejercicio": "5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 12,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 13,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 14,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "e814fe53-575b-4416-bc14-9d197737169d",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 16,
+    "fields": {
+      "practica": 5,
+      "ejercicio": "e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 20,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 21,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 22,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "97c5d885-c1c2-474c-a778-467804a021e2",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 23,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "62ac7bbb-d7a3-4563-acd4-a4e9a019e78a",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 24,
+    "fields": {
+      "practica": 5,
+      "ejercicio": "e6e67ea4-3073-4393-8283-77114ead4674",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 25,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "ad41a9f7-4cad-4581-8ffe-6432f5ba9f14",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 26,
+    "fields": {
+      "practica": 4,
+      "ejercicio": "e6e67ea4-3073-4393-8283-77114ead4674",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciospracticas",
+    "pk": 27,
+    "fields": {
+      "practica": 5,
+      "ejercicio": "cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.examen",
+    "pk": 2,
+    "fields": {
+      "nombre": "Primer parcial",
+      "curso": 3,
+      "estado": "concluido",
+      "fecha_inicio": "2018-09-21T06:19:12Z",
+      "fecha_termino": "2018-09-25T05:58:47Z",
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.examen",
+    "pk": 3,
+    "fields": {
+      "nombre": "Primer examen parcial",
+      "curso": 6,
+      "estado": "activo",
+      "fecha_inicio": "2018-09-21T06:25:01Z",
+      "fecha_termino": null,
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.examen",
+    "pk": 4,
+    "fields": {
+      "nombre": "Matador",
+      "curso": 7,
+      "estado": "activo",
+      "fecha_inicio": "2018-09-21T14:27:34Z",
+      "fecha_termino": null,
+      "descripcion": "Aprueba o salte de la carrera"
+    }
+  },
+  {
+    "model": "evaluador_codigo.examen",
+    "pk": 5,
+    "fields": {
+      "nombre": "Segundo parcial",
+      "curso": 3,
+      "estado": "activo",
+      "fecha_inicio": "2018-09-25T06:06:51Z",
+      "fecha_termino": null,
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.examen",
+    "pk": 6,
+    "fields": {
+      "nombre": "Primer parcial",
+      "curso": 1,
+      "estado": "concluido",
+      "fecha_inicio": "2018-09-25T08:06:43Z",
+      "fecha_termino": "2018-09-25T08:06:50Z",
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.examen",
+    "pk": 7,
+    "fields": {
+      "nombre": "Segundo parcial",
+      "curso": 1,
+      "estado": "activo",
+      "fecha_inicio": "2018-09-25T08:07:25Z",
+      "fecha_termino": null,
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.examen",
+    "pk": 8,
+    "fields": {
+      "nombre": "Ordinario",
+      "curso": 1,
+      "estado": "por iniciar",
+      "fecha_inicio": null,
+      "fecha_termino": null,
+      "descripcion": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 2,
+    "fields": {
+      "examen": 2,
+      "ejercicio": "f4d5bf2f-574e-407d-9389-9f3ce60172b6",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 3,
+    "fields": {
+      "examen": 2,
+      "ejercicio": "1444e037-2bef-470e-8e22-092668bbc7bd",
+      "puntaje": 5
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 4,
+    "fields": {
+      "examen": 3,
+      "ejercicio": "97c5d885-c1c2-474c-a778-467804a021e2",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 5,
+    "fields": {
+      "examen": 4,
+      "ejercicio": "e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "puntaje": 18
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 6,
+    "fields": {
+      "examen": 4,
+      "ejercicio": "5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "puntaje": 2
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 7,
+    "fields": {
+      "examen": 5,
+      "ejercicio": "602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 8,
+    "fields": {
+      "examen": 6,
+      "ejercicio": "602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 9,
+    "fields": {
+      "examen": 7,
+      "ejercicio": "97c5d885-c1c2-474c-a778-467804a021e2",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.ejerciciosexamenes",
+    "pk": 10,
+    "fields": {
+      "examen": 8,
+      "ejercicio": "cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+      "puntaje": 10
+    }
+  },
+  {
+    "model": "evaluador_codigo.alumno",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "matricula": "s14011632",
+      "licenciatura": 1,
+      "cursos": [
+        3,
+        2,
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.alumno",
+    "pk": 2,
+    "fields": {
+      "user": 8,
+      "matricula": "s14011642",
+      "licenciatura": 1,
+      "cursos": [
+        6,
+        2,
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.alumno",
+    "pk": 3,
+    "fields": {
+      "user": 9,
+      "matricula": "s14011636",
+      "licenciatura": 1,
+      "cursos": [
+        6,
+        2,
+        1,
+        4
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.alumno",
+    "pk": 4,
+    "fields": {
+      "user": 10,
+      "matricula": "s14011672",
+      "licenciatura": 1,
+      "cursos": [
+        3,
+        2,
+        1,
+        5,
+        4
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.alumno",
+    "pk": 5,
+    "fields": {
+      "user": 12,
+      "matricula": "zS14011621",
+      "licenciatura": 1,
+      "cursos": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.alumno",
+    "pk": 6,
+    "fields": {
+      "user": 13,
+      "matricula": "s14011659",
+      "licenciatura": 1,
+      "cursos": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 1,
+    "fields": {
+      "ejercicio": 8,
+      "alumno": 5,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "",
+      "archivo_respuesta_temporal": "practicas/practica8/zS14011621/602f92d0-6ee9-4631-9b1c-54c60a161692/1antepasado.prolog",
+      "fecha_enviado": "2018-09-21T14:42:42.507Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 5,
+    "fields": {
+      "ejercicio": 13,
+      "alumno": 1,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica4/s14011632/602f92d0-6ee9-4631-9b1c-54c60a161692/602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011632/602f92d0-6ee9-4631-9b1c-54c60a161692/1antepasado.prolog",
+      "fecha_enviado": "2018-09-23T05:45:57.349Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 6,
+    "fields": {
+      "ejercicio": 9,
+      "alumno": 4,
+      "puntaje_obtenido": 10,
+      "archivo_respuesta": "practicas/practica5/s14011672/602f92d0-6ee9-4631-9b1c-54c60a161692/602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011672/602f92d0-6ee9-4631-9b1c-54c60a161692/antepasado.prolog",
+      "fecha_enviado": "2018-09-25T06:57:41.455Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 7,
+    "fields": {
+      "ejercicio": 12,
+      "alumno": 4,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica4/s14011672/e6e2e46b-28da-4648-9fef-ffc015b7db15/e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011672/e6e2e46b-28da-4648-9fef-ffc015b7db15/garfield_Runtime_error.cpp",
+      "fecha_enviado": "2018-09-25T03:57:07.828Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 8,
+    "fields": {
+      "ejercicio": 14,
+      "alumno": 4,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica4/s14011672/e814fe53-575b-4416-bc14-9d197737169d/e814fe53-575b-4416-bc14-9d197737169d",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011672/e814fe53-575b-4416-bc14-9d197737169d/tiempo_excedido.lisp",
+      "fecha_enviado": "2018-09-25T04:54:30.906Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 9,
+    "fields": {
+      "ejercicio": 20,
+      "alumno": 4,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica4/s14011672/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011672/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/Revertir.java",
+      "fecha_enviado": "2018-09-25T03:19:57.996Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 10,
+    "fields": {
+      "ejercicio": 13,
+      "alumno": 4,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica4/s14011672/602f92d0-6ee9-4631-9b1c-54c60a161692/602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011672/602f92d0-6ee9-4631-9b1c-54c60a161692/Copia_de_antepasado.prolog",
+      "fecha_enviado": "2018-09-25T05:17:38.506Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 11,
+    "fields": {
+      "ejercicio": 21,
+      "alumno": 4,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica4/s14011672/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011672/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/bolita_Time_exeeded.py",
+      "fecha_enviado": "2018-09-25T00:50:55.563Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 12,
+    "fields": {
+      "ejercicio": 22,
+      "alumno": 4,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica4/s14011672/97c5d885-c1c2-474c-a778-467804a021e2/97c5d885-c1c2-474c-a778-467804a021e2",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011672/97c5d885-c1c2-474c-a778-467804a021e2/Revertir.java",
+      "fecha_enviado": "2018-09-25T03:47:51.666Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 13,
+    "fields": {
+      "ejercicio": 23,
+      "alumno": 4,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica4/s14011672/62ac7bbb-d7a3-4563-acd4-a4e9a019e78a/62ac7bbb-d7a3-4563-acd4-a4e9a019e78a",
+      "archivo_respuesta_temporal": "practicas/practica4/s14011672/62ac7bbb-d7a3-4563-acd4-a4e9a019e78a/7longLista.lisp",
+      "fecha_enviado": "2018-09-25T05:20:00.971Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 14,
+    "fields": {
+      "ejercicio": 10,
+      "alumno": 4,
+      "puntaje_obtenido": 10,
+      "archivo_respuesta": "practicas/practica5/s14011672/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011672/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/Main.java",
+      "fecha_enviado": "2018-09-25T06:28:11.147Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 15,
+    "fields": {
+      "ejercicio": 16,
+      "alumno": 4,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica5/s14011672/e6e2e46b-28da-4648-9fef-ffc015b7db15/e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011672/e6e2e46b-28da-4648-9fef-ffc015b7db15/garfield_error_compilacion.cpp",
+      "fecha_enviado": "2018-09-25T06:24:13.886Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 17,
+    "fields": {
+      "ejercicio": 9,
+      "alumno": 3,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011636/602f92d0-6ee9-4631-9b1c-54c60a161692/602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011636/602f92d0-6ee9-4631-9b1c-54c60a161692/antepasado_Time_exeeded.prolog",
+      "fecha_enviado": "2018-09-25T07:09:44.323Z",
+      "error": "Time exceeded"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 18,
+    "fields": {
+      "ejercicio": 10,
+      "alumno": 3,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011636/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011636/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/Main.java",
+      "fecha_enviado": "2018-09-25T07:10:27.206Z",
+      "error": "Time exceeded"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 19,
+    "fields": {
+      "ejercicio": 16,
+      "alumno": 3,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011636/e6e2e46b-28da-4648-9fef-ffc015b7db15/e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011636/e6e2e46b-28da-4648-9fef-ffc015b7db15/garfield_Time_exeeded.cpp",
+      "fecha_enviado": "2018-09-25T07:12:15.372Z",
+      "error": "Time exceeded"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 20,
+    "fields": {
+      "ejercicio": 27,
+      "alumno": 3,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011636/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011636/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/bolita_Time_exeeded.py",
+      "fecha_enviado": "2018-09-25T07:13:35.420Z",
+      "error": "Time exceeded"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 23,
+    "fields": {
+      "ejercicio": 9,
+      "alumno": 1,
+      "puntaje_obtenido": 10,
+      "archivo_respuesta": "practicas/practica5/s14011632/602f92d0-6ee9-4631-9b1c-54c60a161692/602f92d0-6ee9-4631-9b1c-54c60a161692",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011632/602f92d0-6ee9-4631-9b1c-54c60a161692/antepasado.prolog",
+      "fecha_enviado": "2018-09-25T07:19:27.550Z",
+      "error": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 24,
+    "fields": {
+      "ejercicio": 10,
+      "alumno": 1,
+      "puntaje_obtenido": 10,
+      "archivo_respuesta": "practicas/practica5/s14011632/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011632/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/Main.java",
+      "fecha_enviado": "2018-09-25T07:19:46.243Z",
+      "error": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 25,
+    "fields": {
+      "ejercicio": 16,
+      "alumno": 1,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica5/s14011632/e6e2e46b-28da-4648-9fef-ffc015b7db15/e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011632/e6e2e46b-28da-4648-9fef-ffc015b7db15/garfield.cpp",
+      "fecha_enviado": "2018-09-25T07:20:05.267Z",
+      "error": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 26,
+    "fields": {
+      "ejercicio": 27,
+      "alumno": 1,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica5/s14011632/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011632/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/bolita.py",
+      "fecha_enviado": "2018-09-25T07:20:27.273Z",
+      "error": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 27,
+    "fields": {
+      "ejercicio": 24,
+      "alumno": 1,
+      "puntaje_obtenido": 5,
+      "archivo_respuesta": "practicas/practica5/s14011632/e6e67ea4-3073-4393-8283-77114ead4674/e6e67ea4-3073-4393-8283-77114ead4674",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011632/e6e67ea4-3073-4393-8283-77114ead4674/longitud_lista.lisp",
+      "fecha_enviado": "2018-09-25T07:20:55.748Z",
+      "error": ""
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 28,
+    "fields": {
+      "ejercicio": 10,
+      "alumno": 2,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011642/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011642/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/Revertir.java",
+      "fecha_enviado": "2018-09-25T07:23:33.857Z",
+      "error": "Runtime error"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 29,
+    "fields": {
+      "ejercicio": 16,
+      "alumno": 2,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011642/e6e2e46b-28da-4648-9fef-ffc015b7db15/e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011642/e6e2e46b-28da-4648-9fef-ffc015b7db15/garfield_Runtime_error.cpp",
+      "fecha_enviado": "2018-09-25T07:23:59.867Z",
+      "error": "Runtime error"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 30,
+    "fields": {
+      "ejercicio": 24,
+      "alumno": 2,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011642/e6e67ea4-3073-4393-8283-77114ead4674/e6e67ea4-3073-4393-8283-77114ead4674",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011642/e6e67ea4-3073-4393-8283-77114ead4674/longitud_lista_Runtime_error.lisp",
+      "fecha_enviado": "2018-09-25T07:24:23.695Z",
+      "error": "Runtime error"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 31,
+    "fields": {
+      "ejercicio": 27,
+      "alumno": 2,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011642/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011642/cf4d5e23-6f7c-4bfc-8414-c6063901a4dc/bolita_Runtime_error.py",
+      "fecha_enviado": "2018-09-25T07:24:37.414Z",
+      "error": "Runtime error"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 32,
+    "fields": {
+      "ejercicio": 16,
+      "alumno": 6,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011659/e6e2e46b-28da-4648-9fef-ffc015b7db15/e6e2e46b-28da-4648-9fef-ffc015b7db15",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011659/e6e2e46b-28da-4648-9fef-ffc015b7db15/garfield_error_compilacion.cpp",
+      "fecha_enviado": "2018-09-25T07:25:26.580Z",
+      "error": "Error de compilación"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 33,
+    "fields": {
+      "ejercicio": 10,
+      "alumno": 6,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011659/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011659/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/Revertir.java",
+      "fecha_enviado": "2018-09-25T07:26:40.406Z",
+      "error": "Error de compilación"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 34,
+    "fields": {
+      "ejercicio": 24,
+      "alumno": 4,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011672/e6e67ea4-3073-4393-8283-77114ead4674/e6e67ea4-3073-4393-8283-77114ead4674",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011672/e6e67ea4-3073-4393-8283-77114ead4674/longitud_lista_error_compilacion.lisp",
+      "fecha_enviado": "2018-09-25T07:28:57.043Z",
+      "error": "Error de compilación"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestaspracticas",
+    "pk": 35,
+    "fields": {
+      "ejercicio": 24,
+      "alumno": 6,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "practicas/practica5/s14011659/e6e67ea4-3073-4393-8283-77114ead4674/e6e67ea4-3073-4393-8283-77114ead4674",
+      "archivo_respuesta_temporal": "practicas/practica5/s14011659/e6e67ea4-3073-4393-8283-77114ead4674/longitud_lista_error_compilacion.lisp",
+      "fecha_enviado": "2018-09-25T07:29:41.123Z",
+      "error": "Error de compilación"
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestasexamenes",
+    "pk": 3,
+    "fields": {
+      "ejercicio": 5,
+      "alumno": 5,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "",
+      "archivo_respuesta_temporal": "examenes/examen4/zS14011621/e6e2e46b-28da-4648-9fef-ffc015b7db15/Solucion.cpp",
+      "fecha_enviado": "2018-09-21T14:33:10.717Z",
+      "error": null
+    }
+  },
+  {
+    "model": "evaluador_codigo.respuestasexamenes",
+    "pk": 4,
+    "fields": {
+      "ejercicio": 6,
+      "alumno": 5,
+      "puntaje_obtenido": 0,
+      "archivo_respuesta": "",
+      "archivo_respuesta_temporal": "examenes/examen4/zS14011621/5ab02d30-d42c-4dfd-b9f3-5bf7d64afe52/reves.zip",
+      "fecha_enviado": "2018-09-21T14:37:43.152Z",
+      "error": null
+    }
+  }
+]

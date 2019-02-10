@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="col-md-4">
+		<div class="box box-widget widget-user-2">
+			<div class="widget-user-header bg-purple">
+				<div class="widget-user-image">
+					<img class="img-circle" src="{{curso_activo.academico.user.get_img_url}}" alt="">
+				</div>
+				<h3 class="widget-user-desc">
+					{{ curso_activo.academico.user.first_name}} {{ curso_activo.academico.user.last_name}}
+				</h3>
+				<h6 class="widget-user-desc">
+					{{ curso_activo.academico.user.email}}
+				</h6>
+				<h6 class="widget-user-desc pull-right">
+					Académico
+				</h6>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	{% for participante in curso_activo.alumnos.all %}
+	<div class="col-md-4">
+		<div class="box box-widget widget-user-2">
+			<div class="widget-user-header bg-aqua-active ">
+				<div class="widget-user-image">
+					<img class="img-circle" src="{{participante.user.get_img_url}}" alt="">
+				</div>
+				<h4 class="widget-user-desc">
+					{{ participante.user|truncatechars:20}}
+				</h4>
+				<h6 class="widget-user-desc">
+					{{ participante.user.email}}
+				</h6>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>

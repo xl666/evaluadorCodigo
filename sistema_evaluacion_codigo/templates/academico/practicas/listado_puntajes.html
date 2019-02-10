@@ -1,0 +1,40 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Puntajes de práctica {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block head%}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/dataTable.css' %}">
+{% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>{{practica.nombre}} puntajes</strong></span>
+			</div>
+		</div>
+
+		<div class="box-body">
+			{% include "academico/compartido/tabla_puntajes.html" %}
+		</div>
+		<div class="box-footer">
+			<div class="col-md-12">
+				<a href="{{curso_activo.get_listado_practicas_url}}" class="btn btn-primary">
+					<i class="fa fa-arrow-left"></i>
+					Regresar
+				</a>
+
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/dataTable.js' %}"></script>
+{% endblock %}

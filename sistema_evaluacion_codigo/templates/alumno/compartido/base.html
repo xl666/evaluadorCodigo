@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{% block tittle%} {% endblock %}</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.7 -->
+	<link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="{% static 'css/AdminLTE.min.css' %}">
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+		folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="{% static 'css/skins/skin-green-light.min.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/encabezado.css' %}">
+	<!-- Google Font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	{% block head%} {% endblock %}
+</head>
+
+<body class="hold-transition skin-green-light sidebar-mini">
+	<div class="wrapper">
+		<header class="main-header">
+			<!-- Logo -->
+			<a href="{% url 'inicio'%}" class="logo" style="background:#003366;">
+				<!-- mini logo for sidebar mini 50x50 pixels -->
+				<span class="logo-mini">
+					<b>U</b>V</span>
+				<!-- logo for regular state and mobile devices -->
+				<span class="logo-lg" style="font-size:16px;">
+					<b>Universidad</b> Veracruzana</span>
+			</a>
+			<!-- Header Navbar: style can be found in header.less -->
+			<nav class="navbar navbar-static-top" style="background:#00796B">
+				<!-- Sidebar toggle button-->
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+					<span class="sr-only">Toggle navigation</span>
+				</a>
+
+				<!-- Navbar Right Menu -->
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<!-- User Account: style can be found in dropdown.less -->
+						<li class="dropdown user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="{{alumno.user.get_img_url}}" class="user-image"  alt="User Image">
+								<span class="hidden-xs">{{alumno.user}}</span>
+							</a>
+							<ul class="dropdown-menu">
+								<!-- User image -->
+								<li class="user-header" style="background:#00796B">
+
+									<img src="{{ alumno.user.get_img_url }}" class="img-circle" alt="User Image">
+
+									<p>
+										{{alumno.user}}
+										<br>
+										<small>{{alumno.user.email}}</small>
+										<small>{{alumno.matricula}}</small>
+									</p>
+								</li>
+								<!-- Menu Body -->
+								<li class="user-body">
+									<div class="pull-left">
+										<a href="{% url 'editar_perfil_alumno' %}" class="btn btn-default btn-flat">
+											<i class="fa fa-pencil-square-o"></i>
+											Editar</a>
+									</div>
+									<div class="pull-right">
+										<a href="{% url 'logout' %}" class="btn btn-default btn-flat">
+											<i class="fa fa-sign-out"></i>
+											Salir</a>
+									</div>
+									<!-- /.row -->
+								</li>
+							</ul>
+						</li>
+						<!-- Control Sidebar Toggle Button -->
+
+					</ul>
+				</div>
+			</nav>
+
+		</header>
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+				<!-- Sidebar user panel -->
+				<!-- sidebar menu: : style can be found in sidebar.less -->
+				<ul class="sidebar-menu" data-widget="tree">
+					<li>
+						<a href="{% url 'inscribir_curso'%}">
+							<i class="fa fa-pencil-square-o"></i>
+							<span>Inscribir curso</span>
+						</a>
+					</li>
+
+					<li class="header">CURSOS ACTUALES</li>
+					{% for curso in cursos_activos %}
+					<li>
+						<a href="{{curso.get_absolute_url}}">
+							<i class="fa fa-circle text-green"></i>
+							<span>{{ curso|wordwrap:28|linebreaksbr }}</span>
+						</a>
+					</li>
+					{% endfor %}
+					<li class="header">CURSOS ANTERIORES</li>
+					{% for curso in cursos_inactivos %}
+					<li>
+						<a href="{{curso.get_absolute_url}}">
+							<i class="fa fa-circle text-gray"></i>
+							<span>{{ curso|wordwrap:28|linebreaksbr }}</span>
+						</a>
+					</li>
+					{% endfor %}
+
+
+				</ul>
+			</section>
+			<!-- /.sidebar -->
+		</aside>
+		<!-- Content Wrappesr. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div style="background:#003366;">
+				<p style="color:white; padding-left:5px; font-size:16px;">{% block encabezado%}{% endblock %}</p>
+			</div>
+
+			<!-- Main content -->
+			{% block contenido%}
+			<section class="content-header">
+
+			</section>
+			<section class="content">
+
+			</section>
+			{% endblock %}
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b><a href="{% url 'ayuda'%}">Ayuda</a></b>
+			</div>
+			<strong>2018
+				<a href="https://www.uv.mx/">Universidad Veracruzana</a>. Facultad de Estadística e Informática.</strong>
+		</footer>
+	</div>
+	<!-- ./wrapper -->
+	<!-- jQuery 3 -->
+	<script async src="//www.google-analytics.com/analytics.js"></script>
+	<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<!-- Bootstrap 3.3.7 -->
+	<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+	<!-- Slimscroll -->
+	<script src="{% static 'bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+	<!-- FastClick -->
+	<script src="{% static 'bower_components/fastclick/lib/fastclick.js' %}"></script>
+	<!-- AdminLTE App -->
+	<script src="{% static 'js/adminlte.min.js' %}"></script>
+
+	{% block scripts%} {% endblock %}
+
+</body>
+
+</html>

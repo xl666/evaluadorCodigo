@@ -1,0 +1,70 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} Exámenes {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>Exámenes</strong></span>
+			</div>
+		</div>
+		<div class="box-body">
+			<div class="col-sm-12">
+				<ul class="todo-list ui-sortable" id="field_wrapper">
+					{% for examen, estado, label in examenes %}
+					<li>
+						<h4 class="text"><a href="{{examen.get_puntajes_url}}">{{examen.nombre}}</a></h4>
+						<small class="label {{label}}">
+							<a href="" type=""></a>
+							{{estado}}
+						</small>
+						<br>
+						<small>
+							<i class="fa fa-calendar">
+							</i>
+							{% if examen.fecha_inicio and examen.fecha_termino %}
+							{{examen.fecha_inicio}} - {{examen.fecha_termino}}
+							{% else %}
+							-
+							{% endif %}
+
+						</small>
+						<div class="tools">
+							{% if estado == "por iniciar" %}
+							<a href="{{examen.get_activar_url}}"
+							   onclick="return confirm('Una vez que inicie el examen ya no podrá ser editado, ¿desea continuar?');">
+								<font color="green"><i class="fa fa-flag-o"></i></font></a>
+							<a href="{{examen.get_edit_url}}"><i class="fa fa-edit"></i></a>
+
+							{% endif %}
+							<a href="{{examen.get_delete_url}}"
+							   onclick="return confirm('¿Está seguro de que desea eliminar el examen {{examen.nombre}}?');">
+								<font color="red"><i class="fa fa-trash-o"></i></font></a>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+		</div>
+		<div class="box-footer">
+			<div class="col-md-12">
+				<a href="{{curso_activo.get_absolute_url}}" class="btn btn-primary">
+					<i class="fa fa-arrow-left"></i>
+					Regresar
+				</a>
+				{% if curso_activo.activo %}
+				<a href="{{curso_activo.get_add_examen_url}}" class="btn btn-primary pull-right">
+					<i class="fa fa-plus"></i>
+					Crear examen
+				</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+

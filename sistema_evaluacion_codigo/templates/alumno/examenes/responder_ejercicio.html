@@ -1,0 +1,44 @@
+{% extends "alumno/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} {{ejercicio.ejercicio.nombre}} {% endblock %}
+{% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
+{% block contenido%}
+<section class="content">
+	{% include "general/info_error.html" %}
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+				<span><strong>{{ejercicio.ejercicio.nombre}}</strong></span>
+			</div>
+		</div>
+		<form action="{{ejercicio.get_ejercicio_url}}" method="post" enctype="multipart/form-data">
+			<div class="box-body">
+				{% include "alumno/compartido/detalle_ejercicio.html" %}
+				<div class="col-sm-12">
+					{% csrf_token %}
+					{% if ejercicio.examen.estado == "activo" %}
+						{{form|crispy}}
+					{% endif %}
+				</div>
+			</div>
+			<div class="box-footer">
+				<div class="col-md-12">
+					<a href="{{ejercicio.examen.get_absolute_url}}" class="btn btn-primary">
+						<i class="fa fa-arrow-left"></i>
+						Regresar
+					</a>
+					{% if ejercicio.examen.estado == "activo" %}
+					<button type="submit" class="btn btn-primary pull-right">
+						<i class="fa fa-send"></i>
+						Enviar respuesta
+					</button>
+					{% endif %}
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}
+{% block scripts%}
+{% endblock %}

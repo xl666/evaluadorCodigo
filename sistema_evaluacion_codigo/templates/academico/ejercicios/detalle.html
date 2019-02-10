@@ -1,0 +1,104 @@
+{% extends "academico/compartido/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block tittle%} {{ejercicio.nombre}} {% endblock %}
+{% block encabezado%}Sistema de evaluación automática de código{% endblock %}
+{% block contenido%}
+<section class="content">
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="header-block">
+					<span><strong>{{ejercicio.nombre}}</strong>
+						{% if ejercicio.publico %}
+							<i class="fa fa-eye"></i>
+							<small> </small>
+						{% else %}
+							<i class="fa fa-eye-slash"></i>
+						{% endif %}
+					</span>
+			</div>
+		</div>
+		<div class="box-body">
+			<div class="col-sm-12">
+				<label class="control-label">
+					Experiencias educativas relacionadas
+				</label>
+				<ul>
+					{% for experiencia in ejercicio.experiencias_educativas.all %}
+					<li>{{experiencia}}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-sm-12">
+				<label class="control-label">
+					Temas
+				</label>
+				<ul>
+					{% for tema in ejercicio.temas.all %}
+					<li>{{tema}}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-sm-12">
+				<label class="control-label">
+					Descripción
+				</label>
+				<pre>{{ejercicio.descripcion}}</pre>
+			</div>
+			{% if ejercicio.entrada %}
+			<div class="col-sm-12">
+				<label class="control-label">
+					Entrada
+				</label>
+				<pre>{{ejercicio.entrada}}</pre>
+			</div>
+			{% endif %}
+			{% if ejercicio.salida %}
+			<div class="col-sm-12">
+				<label class="control-label">
+					Salida
+				</label>
+				<pre>{{ejercicio.salida}}</pre>
+			</div>
+			{% endif %}
+			<div class="col-sm-12">
+				<label class="control-label">
+					Ejemplo de entrada
+				</label>
+				<pre>{{ejercicio.ejemplo_entrada}}</pre>
+			</div>
+			<div class="col-sm-12">
+				<label class="control-label">
+					Ejemplo de salida
+				</label>
+				<pre>{{ejercicio.ejemplo_salida}}</pre>
+			</div>
+			{% if ejercicio.archivo_apoyo %}
+			<div class="col-sm-12">
+				<a href="{{ ejercicio.archivo_apoyo.url}}">Descargar archivo de apoyo</a>
+			</div>
+			{% endif %}
+			<div class="col-sm-12">
+				<label class="control-label">
+					Autor
+				</label>
+				<p>{{ejercicio.academico}}</p>
+			</div>
+		</div>
+		<div class="box-footer">
+			<div class="col-sm-12">
+				<a href="{% url 'listado_ejercicios' %}" class="btn btn-primary">
+					<i class="fa fa-arrow-left"></i>
+					Regresar
+				</a>
+				{% if academico == ejercicio.academico %}
+				<a href="{{ejercicio.get_edit_url}}" class="btn btn-primary pull-right">
+					<i class="fa fa-edit"></i>
+					Editar ejercicio
+				</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
