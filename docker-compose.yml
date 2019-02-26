@@ -22,7 +22,7 @@ services:
     image: nginx
     restart: always
     ports:
-      - 8000:80
+      - 9999:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./app/sistema_evaluacion_codigo/static_production:/static
