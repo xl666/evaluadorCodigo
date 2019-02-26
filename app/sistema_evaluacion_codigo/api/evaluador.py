@@ -31,7 +31,6 @@ def evaluar(programa, arCasos, maxTime=5, puertoInyeccion=9030):
             salida = inyectar.inyect(programa, entrada, maxTime, puertoInyeccion)
             outputEval = True
             entrada = '' #restart input
-            print(salida)
 
         elif line == CASE_BREAK: #cambiar banderas y evaluar
             outputEval = False
@@ -47,8 +46,11 @@ def evaluar(programa, arCasos, maxTime=5, puertoInyeccion=9030):
             salidaEsperada += messyLine
 
         else: #input reconstruction
-            for elem in line.split(','):
-                entrada += elem + '\n'
+            if line.strip().startswith('['): #si es una lista prolog no se quieren saltos de linea
+                entrada += line + '\n'
+            else:
+                for elem in line.split(','):
+                    entrada += elem + '\n'
 
     return res
 
