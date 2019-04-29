@@ -2,13 +2,19 @@
 FROM python
 
 RUN apt-get -y update \  
-    && apt-get install -y sbcl swi-prolog openjdk-8-jdk \
+    && apt-get install -y swi-prolog openjdk-8-jdk \
     && apt-get -y clean
 
 RUN mkdir -p /code
 RUN mkdir "/system"
+RUN mkdir "/sbcl"
 COPY requirements.txt "/system"
 RUN pip install -r /system/requirements.txt
+WORKDIR /sbcl
+RUN wget https://iweb.dl.sourceforge.net/project/sbcl/sbcl/1.4.11/sbcl-1.4.11-armhf-linux-binary.tar.bz2
+RUN tar xjf sbcl-1.4.11-armhf-linux-binary.tar.bz2
+WORKDIR /sbcl/sbcl-1.4.11-armhf-linux
+RUN ./install.sh
 
 WORKDIR /code
 
