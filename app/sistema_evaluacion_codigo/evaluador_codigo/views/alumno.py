@@ -4,8 +4,9 @@ from django.shortcuts import redirect, render
 
 from evaluador_codigo.decorators import login_student_required
 from evaluador_codigo.routines import *
+from django.views.decorators.clickjacking import xframe_options_exempt
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @login_student_required
 def inscribir_curso(request):
@@ -44,7 +45,7 @@ def ver_detalle_practica(request, pk_curso, pk_practica):
     template = "alumno/practicas/detalle.html"
     return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @login_student_required
 def ver_detalle_examen(request, pk_curso, pk_examen):
@@ -90,7 +91,7 @@ def resolver_ejercicio_practica(request, pk_curso, pk_practica, pk_ejercicio):
                 return redirect(practica.get_absolute_url())
         return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @login_student_required
 def resolver_ejercicio_examen(request, pk_curso, pk_examen, pk_ejercicio):

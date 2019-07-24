@@ -4,8 +4,9 @@ from django.shortcuts import redirect, render
 
 from evaluador_codigo.decorators import logout_required
 from evaluador_codigo.models import Academico, Alumno, Licenciatura, User
+from django.views.decorators.clickjacking import xframe_options_exempt
 
-
+@xframe_options_exempt
 @logout_required
 def iniciar_sesion(request):
     context = {}
@@ -27,7 +28,7 @@ def iniciar_sesion(request):
             context["error"] = 'Verifique usuario y contraseña'
         return render(request, template, context)
 
-
+@xframe_options_exempt
 @logout_required
 def registrar_alumno(request):
     template = "anonimo/registro_alumno.html"

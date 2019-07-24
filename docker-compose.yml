@@ -11,7 +11,7 @@ services:
     depends_on:
       - bd
   bd:
-    image: apcheamitru/arm32v7-mariadb
+    image: mariadb
     restart: always
     env_file:
       - bd.env
