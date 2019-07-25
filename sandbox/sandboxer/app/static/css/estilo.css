@@ -1,0 +1,31 @@
+/* Note: Try to remove the following lines to see the effect of CSS positioning */
+.affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+body {
+    overflow: hidden;
+}
+
+.iframe-container {
+    overflow: hidden;
+    // Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625)
+    position: relative;
+}
+
+.iframe-container iframe {
+    border: 0;
+    height: 100%;
+    left: 15px;
+    right:15px;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    
+}
+
+.opcion {
+    cursor: pointer;
+}  
