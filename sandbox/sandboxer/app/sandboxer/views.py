@@ -20,7 +20,6 @@ def index(request):
     cliente = socket.socket()
     try:
         cliente.connect(('localhost', int(settings.PUERTO_MONITOR)))
-        print('CONEEEECTAAAA')
         cliente.send(b'lanzar:%s%s' % (ip.encode('utf-8'), DELIMITADOR))
         puerto = int(cliente.recv(1024))
         print(puerto)
@@ -28,5 +27,7 @@ def index(request):
     except Exception as err:
         print('CAEEEEEEEEEEEEEEEEEEEEEe')
         print(err)
+    finally:
+        cliente.close()
     
     

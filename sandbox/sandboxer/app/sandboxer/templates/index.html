@@ -33,8 +33,9 @@
    left: 15px;
    right:15px;
    position: absolute;
-   top: 50px;
+   top: 60px;
    width: 100%;
+  
 }
   
   </style>
@@ -52,12 +53,26 @@
       </nav>
       
       
-      <section class="iframe-container">
-	<iframe src="{{ urlEvaluador }}" id="contenedor"></iframe>
+      <section id="evaluador" class="iframe-container" style="display:none">
+	<iframe src="{{ urlEvaluador }}" id="contenedor1"></iframe>
+      </section>
+
+      <section id="consola" class="iframe-container" >
+	<iframe src="http://localhost:{{ puerto }}" id="contenedor2"></iframe>
       </section>
       
 
-    
+      <script>
+	$("#irEvaluador").click(function() {
+	   $("#consola").hide();
+	   $("#evaluador").show();
+	});
+
+	$("#irConsola").click(function() {
+	   $("#consola").show();
+	   $("#evaluador").hide();
+	});
+      </script>    
 
 
   </body>
