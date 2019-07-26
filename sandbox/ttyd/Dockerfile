@@ -11,7 +11,13 @@ EXPOSE 7681
 
 ENV TOKEN=""
 
-CMD ["ttyd", "-m", "1", "bash"]
+COPY ./run.sh /
+RUN chmod 700 /run.sh
+RUN useradd -s /bin/bash alumno
+RUN chown  alumno /code
+
+
+CMD /run.sh
 
 
 

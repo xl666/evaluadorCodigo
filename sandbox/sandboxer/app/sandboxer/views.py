@@ -18,32 +18,21 @@ def get_client_ip(request):
 def recuperarToken(request, ip):
     token = request.session.get('token', None)
     if not token:
-        try:
-            cliente = socket.socket()
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente:            
             cliente.connect(('localhost', int(settings.PUERTO_MONITOR)))
             cliente.send(b'darToken:%s%s' % (ip.encode('utf-8'), DELIMITADOR))
             token = cliente.recv(1024)
             token = token.decode('utf-8')
             request.session['token'] = token
-            cliente.close()
-        except:
-            raise
-        finally:
-            cliente.close()
     return token
 
 def lanzarContenedor(request, token, ip):
     puerto = request.session.get('puerto', None)
     if not puerto:
-        try:
-            cliente = socket.socket()
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente:            
             cliente.connect(('localhost', int(settings.PUERTO_MONITOR)))
             cliente.send(b'lanzar:%s%s' % (ip.encode('utf-8'), DELIMITADOR))
             puerto = int(cliente.recv(1024))
-        except:
-            raise
-        finally:
-            cliente.close()
     return puerto
 
 def index(request):
