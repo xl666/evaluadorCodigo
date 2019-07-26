@@ -39,12 +39,11 @@ def index(request):
     ip = get_client_ip(request)
     try:
         token = recuperarToken(request, ip)
-        print(token)
         puerto = lanzarContenedor(request, token, ip)
         request.session['token'] = token
         request.session['puerto'] = puerto        
         
-        return render_to_response('index.html', {'urlEvaluador': settings.EVALUADOR_URL, 'puerto': puerto})
+        return render_to_response('index.html', {'urlEvaluador': settings.EVALUADOR_URL, 'puerto': puerto, 'token': token})
     except Exception as err:
         print(err)
     

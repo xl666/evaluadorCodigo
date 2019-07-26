@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 EVALUADOR_URL = 'http://localhost:9995'
+
 PUERTO_MONITOR = '9030'
 
 

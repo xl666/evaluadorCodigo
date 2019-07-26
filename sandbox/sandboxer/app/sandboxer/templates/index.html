@@ -24,11 +24,19 @@
       
       
       <section id="evaluador" class="iframe-container" style="display:none" >
-	<iframe src="{{ urlEvaluador }}" id="contenedor1"></iframe>
+	<iframe src="{{ urlEvaluador }}" id="frameEvaluador"></iframe>
       </section>
 
       <section id="consola" class="iframe-container" >
 	<iframe src="http://localhost:{{ puerto }}" id="contenedor2"></iframe>
-      </section>
-      
+      </section>      
   </body>
+
+  <script>
+    window.onload = function () {
+       var frame = document.getElementById("frameEvaluador");
+       frame.contentWindow.postMessage("{{ token }}", "*");
+    }
+  </script>
+  
+</html>

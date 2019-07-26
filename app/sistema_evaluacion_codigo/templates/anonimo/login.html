@@ -44,9 +44,20 @@
 							</div>
 						</div>
 					</div>
+					<input type="hidden" value="" id="miToken">
 				</form>
 			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+  window.onload = function () {
+  window.addEventListener("message", function(event) {
+        var token = document.getElementById("miToken");
+        token.value = event.data;
+     }, false);
+  }
+  </script>
+
 {% endblock %}
