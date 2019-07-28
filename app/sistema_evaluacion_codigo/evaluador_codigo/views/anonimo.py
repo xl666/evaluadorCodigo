@@ -16,12 +16,14 @@ def iniciar_sesion(request):
     elif request.method == 'POST':
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
-        aut = authenticate(username=username, password=password)
+        token = request.POST.get('miToken', None)
+        aut = authenticate(username=username, password=password)        
         if aut is not None:
             usuario = User.objects.get(username=username)
             if not usuario.is_active:
                 context["error"] = 'Su cuenta no está activa, porfavor contacte al administrador'
             else:
+                request.session['token'] = token
                 login(request, aut)
                 return redirect('inicio')
         else:
