@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 
 from evaluador_codigo.decorators import redirect_admin
 from evaluador_codigo.routines import *
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 @login_required(login_url="/login")
@@ -27,7 +28,7 @@ def inicio(request):
             return redirect(curso.get_absolute_url())
         return redirect('/cursos/inscripcion')
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @redirect_admin
 def ver_curso(request, pk_curso):
@@ -45,7 +46,7 @@ def ver_curso(request, pk_curso):
     context["curso_activo"] = curso
     return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @redirect_admin
 def ver_listado_practicas(request, pk_curso):
@@ -63,7 +64,7 @@ def ver_listado_practicas(request, pk_curso):
     context["practicas"] = obtener_practicas(curso)
     return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @redirect_admin
 def ver_listado_examenes(request, pk_curso):
@@ -104,7 +105,7 @@ def ver_listado_integrantes_curso(request, pk_curso):
     context["curso_activo"] = curso
     return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @redirect_admin
 def ver_ayuda(request):
@@ -119,8 +120,10 @@ def ver_ayuda(request):
         template = "alumno/ayuda.html"
         return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 def cerrar_sesion(request):
+    if request.session.get('token', None):
+        request.session['token'] = None
     logout(request)
     return redirect('inicio')

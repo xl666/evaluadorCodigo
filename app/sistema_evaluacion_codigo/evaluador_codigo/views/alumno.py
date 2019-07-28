@@ -31,7 +31,7 @@ def inscribir_curso(request):
             context["error"] = "El código de inscripción ingresado es incorrecto"
         return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @login_student_required
 def ver_detalle_practica(request, pk_curso, pk_practica):
@@ -59,7 +59,7 @@ def ver_detalle_examen(request, pk_curso, pk_examen):
     template = "alumno/examenes/detalle.html"
     return render(request, template, context)
 
-
+@xframe_options_exempt
 @login_required(login_url="/login")
 @login_student_required
 def resolver_ejercicio_practica(request, pk_curso, pk_practica, pk_ejercicio):
