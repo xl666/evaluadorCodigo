@@ -4,6 +4,32 @@
 {% block tittle%} {{ejercicio.ejercicio.nombre}} {% endblock %}
 {% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
 {% block contenido%}
+
+{% if ultimo_puntaje %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">         
+          <h4 class="modal-title">Puntos obtenidos: {{ ultimo_puntaje }}</h4>
+        </div>
+        <div class="modal-body">
+          <p>Serás redirigido en unos segundos...
+        </div>        
+      </div>      
+    </div>
+  </div>
+<script>
+  $('#myModal').modal('show');
+  window.setTimeout(function() {
+  window.location.href = "{{ redirigir }}";
+  }, 5000);
+</script>
+
+{% endif %}
+
 <section class="content">
 	{% include "general/info_error.html" %}
 	{% include "general/info_error_form.html" %}

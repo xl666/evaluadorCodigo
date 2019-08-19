@@ -86,8 +86,12 @@ def resolver_ejercicio_practica(request, pk_curso, pk_practica, pk_ejercicio):
             # estudiante
         else:
             form = obtener_form_respuesta_practica(request, ejercicio_practica, alumno)
-            if subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio_practica, context):
-                return redirect(practica.get_absolute_url())
+            bandera, puntaje = subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio_practica, context)
+            if bandera:
+                #return redirect(practica.get_absolute_url())
+                context['ultimo_puntaje'] = puntaje
+                context['redirigir'] = practica.get_absolute_url()
+                render(request, template, context)
         return render(request, template, context)
 
 
@@ -118,7 +122,8 @@ def resolver_ejercicio_examen(request, pk_curso, pk_examen, pk_ejercicio):
             # estudiante
         else:
             form = obtener_form_respuesta_examen(request, ejercicio_examen, alumno)
-            if subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio_examen, context):
+            bandera, puntaje = subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio_examen, context)
+            if bandera:
                 return redirect(examen.get_absolute_url())
         return render(request, template, context)
 

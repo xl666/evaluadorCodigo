@@ -310,23 +310,23 @@ def subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio, context):
             if (respuesta.archivo_respuesta_temporal.name.endswith('zip')):
                 if not realizar_union_fuentes(respuesta):
                     context["error"] = "Error al unir fuentes"
-                    return False
+                    return False, 0
             resultado_evaluacion = realizar_evaluacion(respuesta)
             if resultado_evaluacion:
                 resultado, puntaje = calcular_puntaje_obtenido_respuesta(resultado_evaluacion, ejercicio.puntaje)
                 if not resultado:
                     context["error"] = puntaje
                     validar_respuesta_anterior(respuesta, respuesta_anterior, 0, error=context["error"])
-                    return False
+                    return False, 0
                 validar_respuesta_anterior(respuesta, respuesta_anterior, puntaje)
-                return True
+                return True, puntaje
             else:
                 context["error"] = "Error de compilación"
                 validar_respuesta_anterior(respuesta, respuesta_anterior, 0, error=context["error"])
-                return False
+                return False, 0
     else:
         context["form"] = form
-        return False
+        return False, 0
 
 
 def obtener_informacion_academico(academico):
