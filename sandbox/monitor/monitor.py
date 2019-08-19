@@ -1,6 +1,5 @@
 
-"""
-"""
+import accessPointInfo
 
 import socket
 import threading
@@ -9,18 +8,27 @@ import datetime
 from collections import namedtuple
 import os
 import random
+import sys
 
-IpPuerto = namedtuple('IpPuerto', 'ip puerto')
+MacPuerto = namedtuple('MacPuerto', 'mac puerto')
 SIMBOLOS = [chr(c) for c in range(65, 91)] + [chr(c) for c in range(97, 123)] + [str(i) for i in range(10)]
 
+class AlumnoInexistente(Exception):
+    pass
+
+
+def getMacIp(ip):
+    ipMacs = accessPointInfo.getIPMacsConectados()
+    mac = accessPointInfo.getMacIp(ip, ipMacs)
+    return mac
 
 def notificar(data):
     mensaje = '%s: %s' % (datetime.datetime.now(), data)
     subprocess.call(['kdialog', '--msgbox', mensaje])
     print(mensaje)
 
-def ipInIpsPuertos(ip, ipsPuertos):
-    elementos = list(filter(lambda x: ip in x, ipsPuertos))
+def macInmacsPuertos(mac, macsPuertos):
+    elementos = list(filter(lambda x: mac in x, macsPuertos))
     if elementos:
         return elementos[0]
     return None
@@ -40,17 +48,17 @@ def get_puerto_libre():
         if not puerto in usados:
             return puerto
 
-def lanzar_contenedor(ip, ipsPuertos, token):
+def lanzar_contenedor(mac, macsPuertos, token, directorio):
     if not token:
         raise Exception('No se puede iniciar el contenedor sin un token')
-    comando = 'docker run --rm -d -p %s:7681 -e TOKEN=%s cplus2ttyd'
-    ipPuerto = ipInIpsPuertos(ip, ipsPuertos)
-    if ipPuerto:
-        return ipPuerto
+    comando = 'docker run --rm -d -p %s:7681 -e TOKEN=%s -v "%s:/code" cplus2ttyd'
+    macPuerto = macInmacsPuertos(mac, macsPuertos)
+    if macPuerto:
+        return macPuerto
     puerto = get_puerto_libre()
     print('Lanzando contenedor en puerto %s' % puerto)
-    os.system(comando % (puerto, token))
-    return IpPuerto(ip, puerto)
+    os.system(comando % (puerto, token, directorio))
+    return MacPuerto(mac, puerto)
 
 def gen_token(longitud=10):
     res = ''
@@ -58,9 +66,9 @@ def gen_token(longitud=10):
         res += random.choice(SIMBOLOS)
     return res
 
-def get_token(ip, dictTokens):
-    if ip in dictTokens.keys():
-        return dictTokens[ip]
+def get_token(mac, dictTokens):
+    if mac in dictTokens.keys():
+        return dictTokens[mac]
     while True:
         token = gen_token()
         if not token in dictTokens.values():
@@ -68,11 +76,13 @@ def get_token(ip, dictTokens):
     assert False # imposible
 
 class Monitor():
-    def __init__(self, port=9030):        
+    def __init__(self, pathMacs, pathDirs, port=9048):        
         self.port = port
+        self.pathDirs = pathDirs
         self.lock = threading.Lock()
-        self.ipsPuertos = set()
+        self.macsPuertos = set()
         self.dictTokens = {}
+        self.pathMacs = pathMacs
         
     def run(self):
         """
@@ -82,18 +92,25 @@ class Monitor():
         mySocket.bind(('', int(self.port)))  # binds to any available interface
         print('listenning on port: %s' % self.port)
         mySocket.listen(5)
-        while True:
-            conn, _ = mySocket.accept()
-            attendThread = WorkThread(conn, self.lock, self.ipsPuertos, self.dictTokens) # se crea un hilo de atención por cliente
-            attendThread.start()
+        try:
+            while True:
+                conn, _ = mySocket.accept()
+                attendThread = WorkThread(conn, self.lock, self.macsPuertos, self.dictTokens, self.pathMacs, self.pathDirs) # se crea un hilo de atención por cliente
+                attendThread.start()
+        except:
+            pass
+        finally:
+            mySocket.close()
 
             
 class WorkThread(threading.Thread):  # it is actually a subprocess
-    def __init__(self, conn, lock, ipsPuertos, dictTokens):
+    def __init__(self, conn, lock, macsPuertos, dictTokens, pathMacs, pathDirs):
         self.conn = conn
         self.lock = lock
-        self.ipsPuertos = ipsPuertos
+        self.macsPuertos = macsPuertos
         self.dictTokens = dictTokens
+        self.pathMacs = pathMacs
+        self.pathDirs = pathDirs
         self.eventos = {'notificar': notificar, 'lanzar': lanzar_contenedor,
                         'darToken': get_token}
         threading.Thread.__init__(self)
@@ -106,19 +123,32 @@ class WorkThread(threading.Thread):  # it is actually a subprocess
         data = data[7:]
         self.lock.acquire()
         try:
-            ipPuerto = self.eventos['lanzar'](data, self.ipsPuertos, self.dictTokens.get(data.decode('utf-8'), None))
-            self.ipsPuertos.add(ipPuerto)
-        except:
+            users = accessPointInfo.getUsers(pathMacs)
+            mac = getMacIp(data.decode('utf-8'))
+            if not mac:
+                raise Exception('La mac no existe para la ip dada')
+            nombre = accessPointInfo.getNameMac(mac, users)
+            if not nombre:
+                raise AlumnoInexistente('El estudiante %s no está registrado en la lista de MACS' % mac)
+            directorio = '%s/%s' % (self.pathDirs, nombre)
+            macPuerto = self.eventos['lanzar'](mac, self.macsPuertos, self.dictTokens.get(mac, None), directorio)
+            self.macsPuertos.add(macPuerto)
+        except Exception as e:
+            print(e)
             raise
         finally:
             self.lock.release()
-        self.conn.send(str(ipPuerto.puerto).encode('utf-8'))
+        self.conn.send(str(macPuerto.puerto).encode('utf-8'))
 
+        
     def darToken(self, data):
         data = data[9:]
         self.lock.acquire()
         token = self.eventos['darToken'](data.decode('utf-8'), self.dictTokens)
-        self.dictTokens[data.decode('utf-8')] = token
+        # obtener mac de ip
+        ip = data.decode('utf-8')
+        mac = getMacIp(ip)
+        self.dictTokens[mac] = token
         self.lock.release()
         self.conn.send(token.encode('utf-8'))
         
@@ -137,16 +167,21 @@ class WorkThread(threading.Thread):  # it is actually a subprocess
             if data.startswith(b'notificar:'):
                 self.notificar(data)
             if data.startswith(b'lanzar:'):
-                self.lanzar(data)
-
+                try:
+                    self.lanzar(data)
+                except AlumnoInexistente:
+                    self.conn.send(b'No encontrado')
+                except:
+                    self.conn.send(b'Error')
             if data.startswith(b'darToken:'):
                 self.darToken(data)
         except:
-            raise
+            pass
         finally:
             self.conn.close()
 
 if __name__ == '__main__':
-    dem = Monitor()
+    pathMacs = sys.argv[1]
+    pathDirs = sys.argv[2]
+    dem = Monitor(pathMacs, pathDirs)
     dem.run()
-

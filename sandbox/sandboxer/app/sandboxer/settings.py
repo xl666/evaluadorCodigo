@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-EVALUADOR_URL = 'http://localhost:9995'
+EVALUADOR_URL = 'http://192.168.12.1:9995'
 
-PUERTO_MONITOR = '9030'
+PUERTO_MONITOR = '9048'
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -30,7 +30,7 @@ SECRET_KEY = '%p_5^ij=jsj(-nueq*e2(b)&xpsf$t=@of#1sf=9mt9y0tkxno'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

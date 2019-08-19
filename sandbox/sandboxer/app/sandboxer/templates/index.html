@@ -14,7 +14,10 @@
   
   <body class="container-fluid">
     
-      
+    {% if error %}
+    <h1>{{ error }}</h1>
+    {% else %}
+    
       <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="0">
 	<ul class="nav navbar-nav">
 	  <li><a class="opcion" id="irEvaluador">Evaluador de código</a></li>
@@ -28,7 +31,7 @@
       </section>
 
       <section id="consola" class="iframe-container" >
-	<iframe src="http://localhost:{{ puerto }}" id="contenedor2"></iframe>
+	<iframe src="http://192.168.12.1:{{ puerto }}" id="contenedor2"></iframe>
       </section>      
   </body>
 
@@ -38,5 +41,7 @@
        frame.contentWindow.postMessage("{{ token }}", "*");
     }
   </script>
+
+  {% endif %}
   
 </html>

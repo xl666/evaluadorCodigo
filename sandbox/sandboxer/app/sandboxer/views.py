@@ -32,7 +32,11 @@ def lanzarContenedor(request, token, ip):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente:            
             cliente.connect(('localhost', int(settings.PUERTO_MONITOR)))
             cliente.send(b'lanzar:%s%s' % (ip.encode('utf-8'), DELIMITADOR))
-            puerto = int(cliente.recv(1024))
+            respuesta = str(cliente.recv(1024), 'utf-8')
+            if respuesta.isdigit():
+                puerto = int(respuesta)
+            else:
+                puerto = None
     return puerto
 
 def index(request):
@@ -40,6 +44,9 @@ def index(request):
     try:
         token = recuperarToken(request, ip)
         puerto = lanzarContenedor(request, token, ip)
+        if not puerto:
+            return render_to_response('index.html', {'error': 'Hubo un error, probablemente tu MAC no está en la lista'})
+            
         request.session['token'] = token
         request.session['puerto'] = puerto        
         
