@@ -1,5 +1,5 @@
 # start from an official image
-FROM python
+FROM python:3.6.7
 
 RUN apt-get -y update \  
     && apt-get install -y swi-prolog openjdk-8-jdk \
