@@ -52,6 +52,8 @@ def ver_detalle_examen(request, pk_curso, pk_examen):
     context = obtener_informacion_alumno(alumno)
     curso = obtener_curso_como_estudiante(pk_curso, alumno)
     examen = get_object_or_404(Examen, pk=pk_examen, curso=curso)
+    if examen.estado != "activo":
+        return redirect('inicio')
     context["curso_activo"] = curso
     context["examen"] = examen
     context["ejercicios_examen"] = obtener_ejercicios_examen(examen, alumno)

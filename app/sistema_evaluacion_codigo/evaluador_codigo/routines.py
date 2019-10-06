@@ -176,13 +176,11 @@ def obtener_ejercicios_examen(examen, alumno):
 def obtener_examenes_como_alumno(curso):
     estado_examenes = []
     color_examenes = []
-    examenes = Examen.objects.filter(curso=curso).exclude(estado="por iniciar")
+    examenes = Examen.objects.filter(curso=curso).exclude(estado="por iniciar").exclude(estado="concluido")
     for examen in examenes:
         estado_examenes.append(examen.estado)
         if examen.estado == "activo":
             color_examenes.append("label-success")
-        elif examen.estado == "concluido":
-            color_examenes.append("label-default")
     return zip(examenes, estado_examenes, color_examenes)
 
 
