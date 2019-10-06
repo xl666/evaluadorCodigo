@@ -104,6 +104,8 @@ def resolver_ejercicio_examen(request, pk_curso, pk_examen, pk_ejercicio):
     context = obtener_informacion_alumno(alumno)
     curso = obtener_curso_como_estudiante(pk_curso, alumno)
     examen = get_object_or_404(Examen, pk=pk_examen, curso=curso)
+    if examen.estado != "activo":
+        return redirect('inicio')
     ejercicio = get_object_or_404(Ejercicio, pk=pk_ejercicio)
     ejercicio_examen = get_object_or_404(EjerciciosExamenes, examen=examen, ejercicio=ejercicio)
     respuesta_anterior = obtener_respuesta_anterior_examen(ejercicio_examen, alumno)
