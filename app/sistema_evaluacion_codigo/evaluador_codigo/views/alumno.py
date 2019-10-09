@@ -129,7 +129,7 @@ def resolver_ejercicio_examen(request, pk_curso, pk_examen, pk_ejercicio):
             if bandera:
                 #return redirect(examen.get_absolute_url())
                 context['ultimo_puntaje'] = puntaje
-                context['redirigir'] = practica.get_absolute_url()
+                context['redirigir'] = examen.get_absolute_url()
         return render(request, template, context)
 
 
