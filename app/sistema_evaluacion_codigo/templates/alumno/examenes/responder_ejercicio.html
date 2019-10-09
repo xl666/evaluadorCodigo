@@ -4,6 +4,10 @@
 {% block tittle%} {{ejercicio.ejercicio.nombre}} {% endblock %}
 {% block encabezado%}{{ curso_activo.exp_educativa }} ({{ curso_activo.nrc }}){% endblock %}
 {% block contenido%}
+
+
+{% include "alumno/compartido/ultimoPuntajeModal.html" %}
+
 <section class="content">
 	{% include "general/info_error.html" %}
 	<div class="box box-widget">
