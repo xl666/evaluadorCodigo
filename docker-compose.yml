@@ -11,7 +11,7 @@ services:
     depends_on:
       - bd
   bd:
-    image: apcheamitru/arm32v7-mariadb
+    image: mariadb:10.2.21
     restart: always
     env_file:
       - bd.env
@@ -21,11 +21,21 @@ services:
   nginx:
     image: nginx
     restart: always
-    ports:
-      - 9995:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./app/sistema_evaluacion_codigo/static_production:/static
       - ./app/sistema_evaluacion_codigo/media:/media
-    depends_on:  
+    depends_on:
       - app
+    expose:
+      - 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cec.rule=Host(`cec.docker.localhost`)"
+      - "traefik.http.routers.cec.entrypoints=web"
+
+
+networks:
+  default:
+    external:
+      name: traefik
