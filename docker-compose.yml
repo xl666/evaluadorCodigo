@@ -27,15 +27,5 @@ services:
       - ./app/sistema_evaluacion_codigo/media:/media
     depends_on:
       - app
-    expose:
-      - 80
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.cec.rule=Host(`cec.docker.localhost`)"
-      - "traefik.http.routers.cec.entrypoints=web"
-
-
-networks:
-  default:
-    external:
-      name: traefik
+    ports:
+      - 8000:80
