@@ -1,4 +1,4 @@
-Django==2.0.4
+Django==2.2.24
 django-bootstrap-datepicker-plus==3.0.4
 django-crispy-forms==1.7.2
 django-debug-toolbar==1.10
