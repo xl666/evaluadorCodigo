@@ -1,5 +1,12 @@
 version: '3'
 services:
+  bd:
+      image: mariadb:10.2.21
+      restart: always
+      env_file:
+        - bd.env
+      volumes:
+        - ./data:/var/lib/mysql
   app:
     env_file:
       - app.env
@@ -10,14 +17,6 @@ services:
       - ./app/sistema_evaluacion_codigo:/code
     depends_on:
       - bd
-  bd:
-    image: mariadb:10.2.21
-    restart: always
-    env_file:
-      - bd.env
-    volumes:
-      - ./data:/var/lib/mysql
-
   nginx:
     image: nginx
     restart: always

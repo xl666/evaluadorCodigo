@@ -28,6 +28,7 @@ Sistema de evaluación automática de código
 						<thead>
 						<tr>
 							<th style="width: 10px">NRC</th>
+							<th>Periodo </th>
 							<th>Experiencia Educativa</th>
 							<th>Bloque</th>
 							<th>Sección</th>
@@ -38,6 +39,7 @@ Sistema de evaluación automática de código
 						{% for curso in cursos_todos %}
 						<tr>
 							<td>{{curso.nrc}}</td>
+							<td> {{curso.periodo}} </td>
 							<td><a href="" data-toggle="modal" id="{{curso.id}}" data-target="#modal-default"
 								   onclick="insertarIdCurso(this)">{{curso.exp_educativa}}</a></td>
 							<td>{{curso.bloque}}</td>

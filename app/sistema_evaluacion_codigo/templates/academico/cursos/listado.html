@@ -23,6 +23,7 @@
 					<thead>
 					<tr>
 						<th style="width: 10px">NRC</th>
+						<th>Periodo </th>
 						<th>Experiencia educativa</th>
 						<th>Licenciatura</th>
 						<th>Periodo</th>
@@ -37,6 +38,7 @@
 						<td><a href="{{curso.get_absolute_url}}" id="{{ejercicio.id}}" value="{{ejercicio.nombre}}"
 							   class="">{{curso.nrc}}</a>
 						</td>
+						<td> {{curso.periodo}} </td>
 						<td>{{curso.exp_educativa}}<a href="{{curso.get_edit_url}}"><span
 							class="fa fa-edit"></span></a></td>
 						<td>{{curso.licenciatura}}</td>

@@ -1,8 +1,8 @@
 # start from an official image
-FROM python:3.6.7
+FROM python:3.9
 
 RUN apt-get -y update \  
-    && apt-get install -y swi-prolog openjdk-8-jdk sbcl\
+    && apt-get install -y swi-prolog openjdk-17-jdk sbcl\
     && apt-get -y clean
 
 RUN mkdir -p /code
