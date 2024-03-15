@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 
@@ -43,6 +44,7 @@ def registrar_alumno(request):
         id_licenciatura = request.POST.get('licenciatura', None)
         password = request.POST.get('password', None)
         conf_password = request.POST.get('conf_password', None)
+
         if not username.strip(' ') or not first_name.strip(' ') or not last_name.strip(' ') or not email.strip(' ') \
             or not matricula.strip(' ') or not password.strip(' ') or not conf_password.strip(
             ' ') or not id_licenciatura:
@@ -51,7 +53,10 @@ def registrar_alumno(request):
         elif password != conf_password:
             context["error"] = "La contraseña no coincide con su confirmación"
             return render(request, template, context)
-        try:
+        if not re.match(r'^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,20})', password):
+            context["error"] = "La contraseña debe tener al menos una mayúscula, un símbolo especial y tener entre 8 y 20 caracteres."
+            return render(request, template, context)
+        try: 
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                             password=password, email=email, is_student=True)
             lic = Licenciatura.objects.get(id=id_licenciatura)

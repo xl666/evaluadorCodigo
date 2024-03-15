@@ -16,6 +16,10 @@ INTERNAL_IPS = ["127.0.0.1"]
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+]
+
 # Application definition
 
 INSTALLED_APPS = ['django.contrib.admin',
@@ -27,6 +31,7 @@ INSTALLED_APPS = ['django.contrib.admin',
                   'bootstrap_datepicker_plus',
                   'evaluador_codigo',
                   'crispy_forms',
+                  'crispy_bootstrap4',
                   'django_extensions',
                   'debug_toolbar',
                   ]
@@ -76,7 +81,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images) 
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
@@ -89,9 +94,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 
 MEDIAFILES_DIRS = [os.path.join(BASE_DIR, "media"), ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
-BOOTSTRAP3 = {'include_jquery': True, }
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 AUTH_USER_MODEL = 'evaluador_codigo.User'
 
