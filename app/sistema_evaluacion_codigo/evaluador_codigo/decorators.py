@@ -24,8 +24,6 @@ def login_student_required(fun):
 def redirect_admin(fun):
     def interna(request, *args, **kwarg):
         if request.user.is_superuser:
-            return redirect('/admin')
+            return redirect('admin')
         return fun(request, *args, **kwarg)
     return interna
-
-

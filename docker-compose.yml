@@ -10,6 +10,8 @@ services:
   app:
     env_file:
       - app.env
+    environment:
+      PATH_PREFIX: sec
     build: ./app
     restart: always
     container_name: app
@@ -28,3 +30,5 @@ services:
       - app
     ports:
       - 8000:80
+    environment:
+      PATH_PREFIX: sec

@@ -1,11 +1,68 @@
-# -*- coding: utf-8 -*-
 import re
+from django import forms
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
+from captcha.fields import CaptchaField
+from datetime import datetime, timezone
 
 from evaluador_codigo.decorators import logout_required
-from evaluador_codigo.models import Academico, Alumno, Licenciatura, User
+from evaluador_codigo.models import Academico, Alumno, Licenciatura, User, Intentos
+from evaluador_codigo.forms import RegisterForm
 
+import logging
+
+class CaptchaTestForm(forms.Form):
+    captcha = CaptchaField()
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+def recuperar_info_ip(ip:str) -> Intentos:
+    try:
+        register = Intentos.objects.get(ip=ip)
+        return register
+    except:
+        return None
+
+def fecha_en_intervalo(fecha_ultimo_intento:datetime, ahora:datetime, tiempo_limite:int) -> bool:
+    diferencia_segundos = (ahora - fecha_ultimo_intento).seconds
+    if diferencia_segundos < tiempo_limite:
+        return True
+    return False
+
+def puede_intentar_loguearse(request, tiempo_limite=6000, intentos_maximos=3) -> bool:
+    ip = get_client_ip(request)
+    ahora = datetime.now(timezone.utc)
+    registro = recuperar_info_ip(ip)
+    if not registro:
+        nuevo_registro = Intentos()
+        nuevo_registro.ip = ip
+        modificar_registro(nuevo_registro, ahora)
+        return True
+    else:
+        intentos = registro.intentos
+        fecha_ultimo_intento = registro.fecha_ultimo_intento
+        if not fecha_en_intervalo(fecha_ultimo_intento, ahora, tiempo_limite):
+            modificar_registro(registro, ahora)
+         
+            return True
+        else:
+            if intentos < intentos_maximos:
+                modificar_registro(registro, ahora, intentos+1)
+                return True
+            else:
+                modificar_registro(registro, ahora, intentos_maximos)
+                return False
+        
+def modificar_registro(registro:Intentos, ahora: datetime, intentos=1) -> None:
+    registro.intentos = intentos
+    registro.fecha_ultimo_intento = ahora
+    registro.save()
 
 @logout_required
 def iniciar_sesion(request):
@@ -16,6 +73,9 @@ def iniciar_sesion(request):
     elif request.method == 'POST':
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
+        if not True: #puede_intentar_loguearse(request):
+            context["error"] = 'Ha excedido el límite de intentos, intente más tarde'
+            return render(request, template, context)
         aut = authenticate(username=username, password=password)
         if aut is not None:
             usuario = User.objects.get(username=username)
@@ -33,40 +93,46 @@ def iniciar_sesion(request):
 def registrar_alumno(request):
     template = "anonimo/registro_alumno.html"
     context = {"licenciaturas": Licenciatura.objects.all()}
+    
     if request.method == 'GET':
+        form = RegisterForm()
+        context['form'] = form
         return render(request, template, context)
+    
     elif request.method == 'POST':
-        username = request.POST.get('username', None)
-        email = request.POST.get('email', None)
-        first_name = request.POST.get('name', None)
-        last_name = request.POST.get('last_name', None)
-        matricula = request.POST.get('matricula', None)
-        id_licenciatura = request.POST.get('licenciatura', None)
-        password = request.POST.get('password', None)
-        conf_password = request.POST.get('conf_password', None)
+        form = RegisterForm(request.POST) 
+        context['form'] = form
+        
+        if form.is_valid():
+            # Extraer datos del formulario validado
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            matricula = form.cleaned_data['matricula']
+            licenciatura = form.cleaned_data['licenciatura']
+            
+            try:
+                # Crear el usuario
+                user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
+                                                password=password, email=email, is_student=True, is_active=True)
 
-        if not username.strip(' ') or not first_name.strip(' ') or not last_name.strip(' ') or not email.strip(' ') \
-            or not matricula.strip(' ') or not password.strip(' ') or not conf_password.strip(
-            ' ') or not id_licenciatura:
-            context["error"] = "Falta uno o más campos"
-            return render(request, template, context)
-        elif password != conf_password:
-            context["error"] = "La contraseña no coincide con su confirmación"
-            return render(request, template, context)
-        if not re.match(r'^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,20})', password):
-            context["error"] = "La contraseña debe tener al menos una mayúscula, un símbolo especial y tener entre 8 y 20 caracteres."
-            return render(request, template, context)
-        try: 
-            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
-                                            password=password, email=email, is_student=True)
-            lic = Licenciatura.objects.get(id=id_licenciatura)
-            Alumno.objects.create(user=user, matricula=matricula, licenciatura=lic)
-            context["exito"] = "Usuario " + user.username + " registrado exitosamente"
-            return render(request, template, context)
-        except:
-            context["error"] = "El usuario ya existe en el sistema"
-            return render(request, template, context)
+                Alumno.objects.create(user=user, matricula=matricula, licenciatura=licenciatura)
+                agregar_texto("aca si llego")
+                return redirect('inicio')
+            except :
+                context["error"] = F"El usuario ya existe en el sistema"
+        return render(request, template, context)
 
+
+def agregar_texto(texto):
+    try:
+        with open('logs.txt', 'a') as archivo:
+            archivo.write('\n' + texto)
+    except FileNotFoundError:
+        with open('logs.txt', 'w') as archivo:
+            archivo.write(texto)
 
 @logout_required
 def registrar_academico(request):

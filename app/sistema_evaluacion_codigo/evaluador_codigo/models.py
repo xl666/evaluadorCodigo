@@ -423,6 +423,10 @@ class Alumno(models.Model):
     def get_puntajes_practicas(self):
         pass
 
+class Intentos(models.Model):
+    ip = models.GenericIPAddressField(primary_key=True)
+    intentos = models.PositiveBigIntegerField()
+    fecha_ultimo_intento = models.DateTimeField()
 
 def get_upload_respuesta_practica(instance, filename):
     file_extension = os.path.splitext(filename)[1]

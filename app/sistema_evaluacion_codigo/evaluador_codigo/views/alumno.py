@@ -6,7 +6,7 @@ from evaluador_codigo.decorators import login_student_required
 from evaluador_codigo.routines import *
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_student_required
 def inscribir_curso(request):
     alumno = get_object_or_404(Alumno, user=request.user)
@@ -31,7 +31,7 @@ def inscribir_curso(request):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required
 @login_student_required
 def ver_detalle_practica(request, pk_curso, pk_practica):
     alumno = get_object_or_404(Alumno, user=request.user)
@@ -45,7 +45,7 @@ def ver_detalle_practica(request, pk_curso, pk_practica):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required
 @login_student_required
 def ver_detalle_examen(request, pk_curso, pk_examen):
     alumno = get_object_or_404(Alumno, user=request.user)
@@ -61,7 +61,7 @@ def ver_detalle_examen(request, pk_curso, pk_examen):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_student_required
 def resolver_ejercicio_practica(request, pk_curso, pk_practica, pk_ejercicio):
     alumno = get_object_or_404(Alumno, user=request.user)
@@ -96,7 +96,7 @@ def resolver_ejercicio_practica(request, pk_curso, pk_practica, pk_ejercicio):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_student_required
 def resolver_ejercicio_examen(request, pk_curso, pk_examen, pk_ejercicio):
     alumno = get_object_or_404(Alumno, user=request.user)
@@ -133,7 +133,7 @@ def resolver_ejercicio_examen(request, pk_curso, pk_examen, pk_ejercicio):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_student_required
 def editar_perfil(request):
     alumno = get_object_or_404(Alumno, user=request.user)

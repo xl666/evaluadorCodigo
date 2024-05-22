@@ -34,6 +34,7 @@ INSTALLED_APPS = ['django.contrib.admin',
                   'crispy_bootstrap4',
                   'django_extensions',
                   'debug_toolbar',
+                  'captcha'
                   ]
 
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware', 'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,10 +85,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images) 
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+PATH_PREFIX = os.environ.get('PATH_PREFIX', '')
+
 STATIC_URL = '/static/'
+
+if PATH_PREFIX:
+    STATIC_URL = f'/{PATH_PREFIX}static/'
+
+if PATH_PREFIX and not PATH_PREFIX.endswith('/'):
+    PATH_PREFIX += '/'
+
+LOGIN_URL = f'/{PATH_PREFIX}login/' 
+LOGIN_REDIRECT_URL = f'/{PATH_PREFIX}login/'    
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static_production")
 
 MEDIA_URL = '/media/'
+if PATH_PREFIX:
+    MEDIA_URL = f'/{PATH_PREFIX}meadia/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
@@ -105,3 +121,4 @@ GRAPH_MODELS = {'all_applications': True, 'group_models': True, }
 CASE_BREAK = '$$$$$$'
 
 INPUT_BREAK = '!!!!!!'
+

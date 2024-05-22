@@ -2,10 +2,29 @@ from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 from django import forms
 from django.core.validators import FileExtensionValidator
 from django.forms import ModelForm
+from captcha.fields import CaptchaField
 
 from .models import Academico, Alumno, Curso, Ejercicio, Examen, Licenciatura, Practica, RespuestasExamenes, \
     RespuestasPracticas, User
 
+class RegisterForm(forms.Form):
+    username = forms.CharField(max_length=150, label="Nombre de usuario")
+    first_name = forms.CharField(max_length=30, label="Nombre")
+    last_name = forms.CharField(max_length=150, label="Apellidos")
+    email = forms.EmailField(label="Correo electrónico")
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña")
+    conf_password = forms.CharField(widget=forms.PasswordInput(), label="Confirmación de contraseña")
+    matricula = forms.CharField(max_length=9, label="Matrícula")
+    licenciatura = forms.ModelChoiceField(queryset=Licenciatura.objects.all(), label="Licenciatura")
+    captcha = CaptchaField()
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        conf_password = cleaned_data.get("conf_password")
+        if password and conf_password and password != conf_password:
+            raise forms.ValidationError("La contraseña y su confirmación no coinciden")
+        return cleaned_data
 
 class UserForm(ModelForm):
     def __init__(self, *args, **kwargs):

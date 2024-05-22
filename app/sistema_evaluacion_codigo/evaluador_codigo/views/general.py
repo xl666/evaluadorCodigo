@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect, render
 
 from evaluador_codigo.decorators import redirect_admin
 from evaluador_codigo.routines import *
 
-
-@login_required(login_url="/login")
+@login_required
 @redirect_admin
 def inicio(request):
-    if request.user.is_teacher:
-        academico = get_object_or_404(Academico, user=request.user)
-        print(academico.user.get_img_url())
-        context = obtener_informacion_academico(academico)
-        if context["cursos_activos"]:
-            curso = context["cursos_activos"].first()
-            print(curso.get_num_integrantes())
-            return redirect(curso.get_absolute_url())
-        return redirect('/cursos/registro')
-    elif request.user.is_student:
-        alumno = get_object_or_404(Alumno, user=request.user)
-        context = obtener_informacion_alumno(alumno)
-        if context["cursos_activos"]:
-            curso = context["cursos_activos"].first()
-            return redirect(curso.get_absolute_url())
-        return redirect('/cursos/inscripcion')
+    if request.user.is_authenticated:
+        if request.user.is_teacher:
+            academico = get_object_or_404(Academico, user=request.user)
+            context = obtener_informacion_academico(academico)
+            if context["cursos_activos"]:
+                curso = context["cursos_activos"].first()
+                return redirect(curso.get_absolute_url())
+            return redirect('agregar_curso')
+        elif request.user.is_student:
+            alumno = get_object_or_404(Alumno, user=request.user)
+            context = obtener_informacion_alumno(alumno)
+            if context["cursos_activos"]:
+                curso = context["cursos_activos"].first()
+                return redirect(curso.get_absolute_url())
+            return redirect('inscribir_curso')
+    else:
+        return redirect_to_login(request.get_full_path(), login_url=f"{settings.PATH_PREFIX}login")
 
 
-@login_required(login_url="/login")
+@login_required
 @redirect_admin
 def ver_curso(request, pk_curso):
     context = {}
@@ -46,7 +47,7 @@ def ver_curso(request, pk_curso):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required
 @redirect_admin
 def ver_listado_practicas(request, pk_curso):
     if request.user.is_teacher:
@@ -64,7 +65,7 @@ def ver_listado_practicas(request, pk_curso):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required
 @redirect_admin
 def ver_listado_examenes(request, pk_curso):
     if request.user.is_teacher:
@@ -88,7 +89,7 @@ def ver_listado_examenes(request, pk_curso):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required
 @redirect_admin
 def ver_listado_integrantes_curso(request, pk_curso):
     if request.user.is_teacher:
@@ -105,7 +106,7 @@ def ver_listado_integrantes_curso(request, pk_curso):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required
 @redirect_admin
 def ver_ayuda(request):
     if request.user.is_teacher:
@@ -120,7 +121,18 @@ def ver_ayuda(request):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required
 def cerrar_sesion(request):
     logout(request)
     return redirect('inicio')
+
+def agregar_texto(texto):
+    try:
+        # Abre el archivo en modo de escritura para agregar texto
+        with open('logs.txt', 'a') as archivo:
+            # Escribe el texto en una nueva línea
+            archivo.write('\n' + texto)
+    except FileNotFoundError:
+        # Si el archivo no existe, crea uno nuevo y escribe el texto
+        with open('logs.txt', 'w') as archivo:
+            archivo.write(texto)

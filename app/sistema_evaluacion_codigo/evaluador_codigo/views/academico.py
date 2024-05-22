@@ -11,7 +11,7 @@ from evaluador_codigo.decorators import login_teacher_required
 from evaluador_codigo.routines import *
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def agregar_tema(request):
     if request.is_ajax():
@@ -25,7 +25,7 @@ def agregar_tema(request):
                             content_type="application/json")
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def agregar_curso(request):
     academico = get_object_or_404(Academico, user=request.user)
@@ -51,7 +51,7 @@ def agregar_curso(request):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def agregar_ejercicio(request):
     academico = get_object_or_404(Academico, user=request.user)
@@ -84,7 +84,7 @@ def agregar_ejercicio(request):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def agregar_examen(request, pk_curso):
     form = ExamenForm()
@@ -121,7 +121,7 @@ def agregar_examen(request, pk_curso):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def agregar_practica(request, pk_curso):
     form = PracticaForm()
@@ -158,7 +158,7 @@ def agregar_practica(request, pk_curso):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def editar_curso(request, pk_curso):
     academico = get_object_or_404(Academico, user=request.user)
@@ -182,7 +182,7 @@ def editar_curso(request, pk_curso):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def ver_detalle_ejercicio(request, id_ejercicio):
     academico = get_object_or_404(Academico, user=request.user)
@@ -193,7 +193,7 @@ def ver_detalle_ejercicio(request, id_ejercicio):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def editar_ejercicio(request, id_ejercicio):
     academico = get_object_or_404(Academico, user=request.user)
@@ -226,7 +226,7 @@ def editar_ejercicio(request, id_ejercicio):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def editar_practica(request, pk_curso, pk_practica):
     academico = get_object_or_404(Academico, user=request.user)
@@ -273,7 +273,7 @@ def editar_practica(request, pk_curso, pk_practica):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def editar_examen(request, pk_curso, pk_examen):
     academico = get_object_or_404(Academico, user=request.user)
@@ -315,7 +315,7 @@ def editar_examen(request, pk_curso, pk_examen):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def activar_examen(request, pk_curso, pk_examen):
     academico = get_object_or_404(Academico, user=request.user)
@@ -327,7 +327,7 @@ def activar_examen(request, pk_curso, pk_examen):
     return redirect(examen.get_administrar_url())
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def administrar_examen(request, pk_curso, pk_examen):
     academico = get_object_or_404(Academico, user=request.user)
@@ -346,7 +346,7 @@ def administrar_examen(request, pk_curso, pk_examen):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def concluir_examen(request, pk_curso, pk_examen):
     academico = get_object_or_404(Academico, user=request.user)
@@ -358,7 +358,7 @@ def concluir_examen(request, pk_curso, pk_examen):
     return redirect(curso.get_listado_examenes_url())
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def ver_puntajes_generales(request, pk_curso):
     academico = get_object_or_404(Academico, user=request.user)
@@ -378,7 +378,7 @@ def ver_puntajes_generales(request, pk_curso):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def ver_puntajes_practica(request, pk_curso, pk_practica):
     academico = get_object_or_404(Academico, user=request.user)
@@ -397,7 +397,7 @@ def ver_puntajes_practica(request, pk_curso, pk_practica):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 def ver_puntajes_examen(request, pk_curso, pk_examen):
     academico = get_object_or_404(Academico, user=request.user)
     context = obtener_informacion_academico(academico)
@@ -415,7 +415,7 @@ def ver_puntajes_examen(request, pk_curso, pk_examen):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def ver_respuesta_ejercicio_practica(request, pk_curso, pk_practica, pk_respuesta):
     academico = get_object_or_404(Academico, user=request.user)
@@ -433,7 +433,7 @@ def ver_respuesta_ejercicio_practica(request, pk_curso, pk_practica, pk_respuest
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def ver_respuesta_ejercicio_examen(request, pk_curso, pk_examen, pk_respuesta):
     academico = get_object_or_404(Academico, user=request.user)
@@ -451,7 +451,7 @@ def ver_respuesta_ejercicio_examen(request, pk_curso, pk_examen, pk_respuesta):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def editar_perfil(request):
     academico = get_object_or_404(Academico, user=request.user)
@@ -483,7 +483,7 @@ def editar_perfil(request):
         return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def eliminar_practica(request, pk_curso, pk_practica):
     academico = get_object_or_404(Academico, user=request.user)
@@ -493,7 +493,7 @@ def eliminar_practica(request, pk_curso, pk_practica):
     return redirect(curso.get_listado_practicas_url())
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def eliminar_examen(request, pk_curso, pk_examen):
     academico = get_object_or_404(Academico, user=request.user)
@@ -503,7 +503,7 @@ def eliminar_examen(request, pk_curso, pk_examen):
     return redirect(curso.get_listado_examenes_url())
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def ver_listado_ejercicios(request):
     academico = get_object_or_404(Academico, user=request.user)
@@ -513,7 +513,7 @@ def ver_listado_ejercicios(request):
     return render(request, template, context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/sec/login")
 @login_teacher_required
 def ver_listado_cursos(request):
     academico = get_object_or_404(Academico, user=request.user)

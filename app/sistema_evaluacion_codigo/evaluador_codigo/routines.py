@@ -44,7 +44,8 @@ def abrir_casos_prueba(casos_prueba):
             salida += messyLine
         else:  # input reconstruction
             for elem in line.split(','):
-                entrada += elem + '\n'
+                entrada += elem + ','
+            entrada = entrada[:-1]
     return entradas, salidas
 
 
