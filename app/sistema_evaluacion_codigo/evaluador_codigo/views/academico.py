@@ -520,3 +520,35 @@ def ver_listado_cursos(request):
     context = obtener_informacion_academico(academico)
     template = "academico/cursos/listado.html"
     return render(request, template, context)
+
+@login_required(login_url="/sec/login")
+@login_teacher_required
+def cambiar_pass(request, pk_estudiante):
+    alumno = get_object_or_404(Alumno, pk=pk_estudiante)
+    usuario = get_object_or_404(User, alumno=alumno, is_student=True)
+    context = {}
+    context["nombre_estudiante"] = usuario.first_name + ' ' + usuario.last_name
+    context["pk_estudiante"] = pk_estudiante
+    template = "academico/estudiantes/editar_pass_estudiante.html"
+
+    
+    if request.method == 'GET':
+        form = PasswordForm()
+        context['form'] = form
+        return render(request, template, context)
+    elif request.method == 'POST':
+        form = PasswordForm(request.POST)
+        context['form'] = form
+
+        if form.is_valid():
+            password = form.cleaned_data['password']
+            conf_password = form.cleaned_data['conf_password']
+
+            if (password == conf_password):
+                usuario.set_password(password)
+                usuario.save()
+                return redirect('inicio')
+
+            else:
+                context["error"] = "Las contraaseñas no coinciden"
+                return render(request, template, context)

@@ -1,4 +1,5 @@
 import re
+from enum import Enum
 from django import forms
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
@@ -104,7 +105,6 @@ def registrar_alumno(request):
         context['form'] = form
         
         if form.is_valid():
-            # Extraer datos del formulario validado
             username = form.cleaned_data['username']
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -112,19 +112,45 @@ def registrar_alumno(request):
             password = form.cleaned_data['password']
             matricula = form.cleaned_data['matricula']
             licenciatura = form.cleaned_data['licenciatura']
-            
-            try:
-                # Crear el usuario
-                user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
-                                                password=password, email=email, is_student=True, is_active=True)
 
-                Alumno.objects.create(user=user, matricula=matricula, licenciatura=licenciatura)
-                agregar_texto("aca si llego")
-                return redirect('inicio')
-            except :
-                context["error"] = F"El usuario ya existe en el sistema"
+            user_exist = user_exist_database(username, email, matricula, True)
+
+            if(user_exist == User_exist_response.NOT_EXIST):
+                try:
+                    user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
+                                                    password=password, email=email, is_student=True, is_active=True)
+
+                    Alumno.objects.create(user=user, matricula=matricula, licenciatura=licenciatura)
+                    return redirect('inicio')
+                except:
+                    context["error"] = F"El usuario ya existe en el sistema"
+            elif user_exist == User_exist_response.USERNAME_EXIST:
+                context["error"] = F"El username ya se encuentra registrado"
+            elif user_exist == User_exist_response.EMAIL_EXIST:
+                context["error"] = F"El email ya se encuentra registrado"
+            elif user_exist == User_exist_response.MATRICULA_EXIST:
+                context["error"] = F"La matricula ya se encuentra registrado"
         return render(request, template, context)
 
+class User_exist_response(Enum):
+    NOT_EXIST = 0
+    USERNAME_EXIST = 1
+    EMAIL_EXIST = 2
+    MATRICULA_EXIST = 3
+
+def user_exist_database(username: str, email: str, matricula, is_student):
+
+    if User.objects.filter(username=username).exists():
+        return User_exist_response.USERNAME_EXIST
+
+    if User.objects.filter(email=email).exists():
+        return User_exist_response.EMAIL_EXIST
+
+    if is_student and matricula:
+        if Alumno.objects.filter(matricula=matricula).exists():
+            return User_exist_response.MATRICULA_EXIST
+
+    return User_exist_response.NOT_EXIST
 
 def agregar_texto(texto):
     try:
