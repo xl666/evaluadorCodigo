@@ -1,0 +1,18 @@
+FROM python:3.12.4
+
+# Actualiza y instala paquetes necesarios
+RUN apt-get -y update \
+    && apt-get install -y swi-prolog openjdk-17-jdk sbcl \
+    && apt-get -y clean
+
+WORKDIR /app
+
+# Copia tu código al contenedor
+COPY main.py .
+
+# Crea el directorio /uploads y establece los permisos
+RUN mkdir -p /uploads \
+    && chmod 777 /uploads
+
+# Ejecuta el script Python
+CMD ["python", "-u", "main.py"]

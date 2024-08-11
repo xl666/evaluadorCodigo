@@ -10,11 +10,6 @@ from evaluador_codigo.decorators import logout_required
 from evaluador_codigo.models import Academico, Alumno, Licenciatura, User, Intentos
 from evaluador_codigo.forms import RegisterForm
 
-import logging
-
-class CaptchaTestForm(forms.Form):
-    captcha = CaptchaField()
-
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -36,7 +31,7 @@ def fecha_en_intervalo(fecha_ultimo_intento:datetime, ahora:datetime, tiempo_lim
         return True
     return False
 
-def puede_intentar_loguearse(request, tiempo_limite=6000, intentos_maximos=3) -> bool:
+def puede_intentar_loguearse(request, tiempo_limite=300, intentos_maximos=3) -> bool:
     ip = get_client_ip(request)
     ahora = datetime.now(timezone.utc)
     registro = recuperar_info_ip(ip)
@@ -74,7 +69,7 @@ def iniciar_sesion(request):
     elif request.method == 'POST':
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
-        if not True: #puede_intentar_loguearse(request):
+        if not puede_intentar_loguearse(request):
             context["error"] = 'Ha excedido el límite de intentos, intente más tarde'
             return render(request, template, context)
         aut = authenticate(username=username, password=password)

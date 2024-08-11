@@ -142,8 +142,8 @@ def agregar_practica(request, pk_curso):
             if ejercicios and puntajes:
                 practica = form.save(commit=False)
                 if practica:
-                    practica.curso = curso
-                    practica.save()
+                    practica.curso = curso 
+                    practica.save() 
                     for id_ejercicio, puntaje in zip(ejercicios, puntajes):
                         ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio)
                         practica_ejercicio = EjerciciosPracticas.objects.create(practica=practica, ejercicio=ejercicio,
@@ -156,7 +156,7 @@ def agregar_practica(request, pk_curso):
         else:
             context["form"] = form
         return render(request, template, context)
-
+ 
 
 @login_required(login_url="/sec/login")
 @login_teacher_required
@@ -190,8 +190,7 @@ def ver_detalle_ejercicio(request, id_ejercicio):
     ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio)
     context["ejercicio"] = ejercicio
     template = "academico/ejercicios/detalle.html"
-    return render(request, template, context)
-
+    return render(request, template, context) 
 
 @login_required(login_url="/sec/login")
 @login_teacher_required
@@ -291,7 +290,7 @@ def editar_examen(request, pk_curso, pk_examen):
     if request.method == 'POST':
         form = ExamenForm(request.POST, instance=examen)
         id_ejercicios = request.POST.getlist("ejercicios[]")
-        puntajes = request.POST.getlist("puntajes[]")
+        puntajes = request.POST.getlist("puntajes[]") 
         ejercicios_enviados = []
         if form.is_valid():
             if id_ejercicios and puntajes:

@@ -2,12 +2,10 @@
 from django.core.files import File
 from django.shortcuts import get_object_or_404
 
-from api.compilador import compile
-from api.evaluador import evaluar
-from api.unirFuentes import generarFuenteJava
+from api.evaluar_service import evaluar_service
 from .forms import *
 from .models import *
-
+import time
 
 # Crea el archivo de casos de prueba para ligarlo a un ejercicio
 def crear_casos_prueba(f, entradas, salidas):
@@ -48,43 +46,33 @@ def abrir_casos_prueba(casos_prueba):
             entrada = entrada[:-1]
     return entradas, salidas
 
-
-def realizar_union_fuentes(respuesta):
-    if (respuesta.archivo_respuesta_temporal.name.endswith('zip')):
-        if generarFuenteJava(respuesta.archivo_respuesta_temporal.path, respuesta.get_path_archivo("Main.java")):
-            with open(respuesta.get_path_archivo("Main.java"), 'r') as resultado:
-                djangofile = File(resultado)
-                respuesta.archivo_respuesta_temporal.save("Main.java", resultado)
-                respuesta.save()
-            return True
-        else:
-            return False
-
-
 def realizar_evaluacion(respuesta):
     resultado_evaluacion = False
     if (respuesta.archivo_respuesta_temporal.name.endswith('py') or respuesta.archivo_respuesta_temporal.name.endswith(
         'prolog')):
-        resultado_evaluacion = evaluar(respuesta.archivo_respuesta_temporal.path,
+        resultado_evaluacion = evaluar_service(respuesta.archivo_respuesta_temporal.path,
                                        respuesta.ejercicio.ejercicio.casos_prueba.path)
     else:
         resultado_compilacion, archivo_compilado = compile(respuesta.archivo_respuesta_temporal.path,
                                                            respuesta.get_path())
         if resultado_compilacion:
-            resultado_evaluacion = evaluar(respuesta.get_path_archivo(archivo_compilado),
+            resultado_evaluacion = evaluar_service(respuesta.get_path_archivo(archivo_compilado),
                                            respuesta.ejercicio.ejercicio.casos_prueba.path)
     return resultado_evaluacion
 
 
 # Obtiene el puntaje obtenido por el alumno en su respuesta
 def calcular_puntaje_obtenido_respuesta(resultado_evaluacion, puntaje_ejercicio):
-    num_casos = len(resultado_evaluacion)
+    casos_arr = resultado_evaluacion.strip().split('$#')
     casos_aprobados = 0
-    for resultado in resultado_evaluacion:
-        if resultado == True:
+    for resultado in casos_arr:
+        if resultado == "true":
             casos_aprobados = casos_aprobados + 1
+        elif resultado == '':
+            num_casos -= 1
         elif resultado == 'Runtime error' or resultado == 'Time exceeded':
             return False, resultado
+        
     return True, int(puntaje_ejercicio / num_casos * casos_aprobados)
 
 
@@ -306,10 +294,6 @@ def subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio, context):
             respuesta.ejercicio = ejercicio
             respuesta.alumno = context["alumno"]
             respuesta.save()
-            if (respuesta.archivo_respuesta_temporal.name.endswith('zip')):
-                if not realizar_union_fuentes(respuesta):
-                    context["error"] = "Error al unir fuentes"
-                    return False, 0
             resultado_evaluacion = realizar_evaluacion(respuesta)
             if resultado_evaluacion:
                 resultado, puntaje = calcular_puntaje_obtenido_respuesta(resultado_evaluacion, ejercicio.puntaje)

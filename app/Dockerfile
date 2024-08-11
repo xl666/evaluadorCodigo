@@ -1,10 +1,6 @@
 # start from an official image
 FROM python:3.11
 
-RUN apt-get -y update \  
-    && apt-get install -y swi-prolog openjdk-17-jdk sbcl\
-    && apt-get -y clean
-
 RUN mkdir -p /code
 RUN mkdir "/system"
 COPY requirements.txt "/system"
@@ -25,9 +21,5 @@ ENV DATABASE_PORT=3306
 
 COPY iniciarServidor.sh "/system"
 RUN chmod 755 "/system/iniciarServidor.sh"
-
-
-RUN useradd -s /bin/bash principal
-RUN useradd -s /bin/bash limitado
 
 CMD /bin/bash -c '/system/iniciarServidor.sh'

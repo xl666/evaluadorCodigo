@@ -1,5 +1,6 @@
 {% extends "anonimo/compartido/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block tittle%} Solicitar registro como académico{% endblock %}
 
 {% block contenido %}
@@ -67,10 +68,22 @@
 						</div>
 					</div>
 
+					<div class="form-group">
+                        <div class="col-md-12">
+                            <div id="password-hint" class="alert alert-danger" style="display: none;">
+                                <ul id="password-requirements">
+                                    <li id="min-length">Tu contraseña debe tener al menos 12 caracteres.</li>
+                                    <li id="special-char">Tu contraseña debe contener al menos un carácter especial (!@#$%^&*).</li>
+                                    <li id="match">Asegúrate de que ambas contraseñas coincidan.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
 					<div style="margin-top:10px" class="form-group">
 						<div class="col-sm-12 controls">
 							<p style=" text-align: center;">
-								<button type="submit" class="btn btn-success">Guardar</button>
+								<button type="submit" class="btn btn-success" id="btn-save">Guardar</button>
 							</p>
 						</div>
 					</div>
@@ -89,4 +102,8 @@
 		</div>
 	</div>
 </section>
+{% endblock %}
+
+{% block scripts%}
+<script src="{% static 'js/validateps.js' %}"></script>
 {% endblock %}

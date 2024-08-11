@@ -17,7 +17,7 @@ from sistema_evaluacion_codigo.base import *
 timezone.activate('America/Mexico_City')
 
 
-class OverwriteStorage(FileSystemStorage):
+class OverwriteStorage(FileSystemStorage): 
     '''
         Cambia el comportamiento predeterminado de Django y lo hace sobrescribir archivos de
         el mismo nombre que fueron cargados por el usuario
@@ -60,7 +60,7 @@ class User(AbstractUser):
         return file_url
 
 
-class Licenciatura(models.Model):
+class Licenciatura(models.Model): 
     licenciatura = models.CharField("Licenciatura", null=False, blank=False, max_length=50, unique=True)
 
     class Meta:

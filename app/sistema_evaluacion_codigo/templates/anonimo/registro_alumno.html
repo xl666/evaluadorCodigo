@@ -1,43 +1,56 @@
 {% extends "anonimo/compartido/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block tittle%} Registro de alumno {% endblock %}
 
 {% block contenido %}
 <section class="content">
-	<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-		<div class="panel panel-info">
-			<div class="panel-heading" style="background:#003366; color:white;">
-				<div class="panel-title">Regístrate como alumno</div>
-			</div>
-			<div style="padding-top:30px" class="panel-body">
-				{% include "general/info_error.html" %}
-				{% include "general/info_success.html" %}
-				<form id="loginform" method='post' action="{% url 'registrar_alumno' %}" class="form-horizontal" role="form">
-					{% csrf_token %}
-					{{ form.as_p }}
-					<div style="margin-top:10px" class="form-group">
-						<div class="col-sm-12 controls">
-							<p style=" text-align: center;">
-								<button type="submit" id="btn-save" class="btn btn-success">Guardar</button>
-							</p>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-12 control">
-							<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-								¿Ya tienes una cuenta?
-								<a href="{% url 'login' %}" onClick="$('#loginbox').hide(); $('#signupbox').show()">
-									Inicia sesión
-								</a>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading" style="background:#003366; color:white;">
+                <div class="panel-title">Regístrate como alumno</div>
+            </div>
+            <div style="padding-top:30px" class="panel-body">
+                {% include "general/info_error.html" %}
+                {% include "general/info_success.html" %}
+                <form id="loginform" method='post' action="{% url 'registrar_alumno' %}" class="form-horizontal" role="form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div id="password-hint" class="alert alert-danger" style="display: none;">
+                                <ul id="password-requirements">
+                                    <li id="min-length">Tu contraseña debe tener al menos 12 caracteres.</li>
+                                    <li id="special-char">Tu contraseña debe contener al menos un carácter especial (!@#$%^&*).</li>
+                                    <li id="match">Asegúrate de que ambas contraseñas coincidan.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px" class="form-group">
+                        <div class="col-sm-12 controls">
+                            <p style=" text-align: center;">
+                                <button type="submit" id="btn-save" class="btn btn-success" disabled>Guardar</button>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 control">
+                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                ¿Ya tienes una cuenta?
+                                <a href="{% url 'login' %}" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                    Inicia sesión
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
 
-<script>
-	</script>
+{% block scripts%}
+<script src="{% static 'js/validateps.js' %}"></script>
+{% endblock %}
