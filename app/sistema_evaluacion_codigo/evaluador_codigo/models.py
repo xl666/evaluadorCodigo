@@ -241,6 +241,9 @@ class Ejercicio(models.Model):
 
     def get_edit_url(self):
         return reverse("ejercicio_editar", args=[str(self.id)])
+    
+    def get_eval_url(self):
+        return reverse("ejercicio_evaluar", args=[str(self.id)])
 
 
 class Practica(models.Model):
@@ -442,6 +445,9 @@ def get_upload_respuesta_temporal_practica(instance, filename):
                              str(instance.alumno.matricula), str(instance.ejercicio.ejercicio.id), filename)
     return file_path
 
+
+class EjercicioEvaluar(models.Model):
+    file = models.FileField()
 
 class RespuestasPracticas(models.Model):
     ejercicio = models.ForeignKey(EjerciciosPracticas, on_delete=models.CASCADE)

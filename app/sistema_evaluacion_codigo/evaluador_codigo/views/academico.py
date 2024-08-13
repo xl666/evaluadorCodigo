@@ -2,10 +2,12 @@
 import json
 import time
 
+from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
 
 from evaluador_codigo.decorators import login_teacher_required
 from evaluador_codigo.routines import *
@@ -223,6 +225,40 @@ def editar_ejercicio(request, id_ejercicio):
         else:
             context["form"] = form
         return render(request, template, context)
+
+def evaluar_ejercicio(request, id_ejercicio):
+    academico = get_object_or_404(Academico, user=request.user)
+    context = obtener_informacion_academico(academico)
+    ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio, academico=academico)
+    context["ejercicio"] = ejercicio
+    form = None
+    template = "academico/ejercicios/evaluar.html"
+    if request.method == "POST":
+        form = EjercicioEvaluarForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Guarda el formulario y obtiene la instancia
+            instance = form.save()
+            # Extrae el nombre del archivo
+            file_name = instance.file.name
+            # Realiza alguna operación con el nombre del archivo
+            print(f'Archivo subido: {file_name}')
+            # Puedes hacer algo más con el archivo aquí
+        else:
+            form = EjercicioEvaluarForm()
+    elif request.method == "GET":
+        form = EjercicioEvaluarForm()
+    context["form"] = form
+    return render(request, template, context)
+    
+def write_to_file(text):
+    with open('archivo.txt', 'a') as file:
+        file.write(text + '\n')
+
+        
+
+def append_to_file(text):
+    with open('archivo.txt', 'a') as file:
+        file.write(text + '\n')
 
 
 @login_required(login_url="/sec/login")

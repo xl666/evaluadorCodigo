@@ -5,7 +5,7 @@ from django.forms import ModelForm
 from captcha.fields import CaptchaField
 
 from .models import Academico, Alumno, Curso, Ejercicio, Examen, Licenciatura, Practica, RespuestasExamenes, \
-    RespuestasPracticas, User
+    RespuestasPracticas, User, EjercicioEvaluar
 
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length=150, label="Nombre de usuario")
@@ -132,6 +132,11 @@ class EjercicioForm(ModelForm):
         model = Ejercicio
         fields = ["nombre", "experiencias_educativas", "temas", "descripcion", "entrada", "salida", "ejemplo_entrada",
                   "ejemplo_salida", "archivo_apoyo", "publico"]
+
+class EjercicioEvaluarForm(forms.ModelForm):
+    class Meta:
+        model = EjercicioEvaluar
+        fields = ["file"]
 
 
 class PracticaForm(ModelForm):

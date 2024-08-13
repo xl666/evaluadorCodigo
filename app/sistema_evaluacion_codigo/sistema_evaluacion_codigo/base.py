@@ -100,9 +100,7 @@ LOGIN_REDIRECT_URL = f'/{PATH_PREFIX}login/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static_production")
  
-# MEDIA_URL = '/media/'
-#if PATH_PREFIX:
-    #MEDIA_URL = f'/{PATH_PREFIX}media/'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 

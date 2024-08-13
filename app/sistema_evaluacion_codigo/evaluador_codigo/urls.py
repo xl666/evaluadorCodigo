@@ -21,6 +21,7 @@ urlpatterns = [
     path('%sejercicios/listado/' % settings.PATH_PREFIX, academico.ver_listado_ejercicios, name="listado_ejercicios"),
     path('%sejercicios/registro/' % settings.PATH_PREFIX, academico.agregar_ejercicio, name="agregar_ejercicio"),
     re_path(r'^%sejercicios/(?P<id_ejercicio>[0-9A-Fa-f-]+)/editar$' % settings.PATH_PREFIX, academico.editar_ejercicio, name="ejercicio_editar"),
+    re_path(r'^%sejercicios/(?P<id_ejercicio>[0-9A-Fa-f-]+)/evaluar$' % settings.PATH_PREFIX, academico.evaluar_ejercicio, name="ejercicio_evaluar"),
     re_path(r'^%sejercicios/(?P<id_ejercicio>[0-9A-Fa-f-]+)/detalle$' % settings.PATH_PREFIX, academico.ver_detalle_ejercicio,
             name="ejercicio_detalle"),
     path('%scursos/registro/' % settings.PATH_PREFIX, academico.agregar_curso, name="agregar_curso"),
