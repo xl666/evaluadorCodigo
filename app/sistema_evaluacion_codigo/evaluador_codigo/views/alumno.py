@@ -81,6 +81,17 @@ def resolver_ejercicio_practica(request, pk_curso, pk_practica, pk_ejercicio):
     if request.method == 'GET':
         return render(request, template, context)
     if request.method == 'POST':
+        if not validar_estado_practica(practica):  # verifica que el examen esté activo
+            context[
+                "error"] = "La práctica ha concluido"  # si el examen no está activo, no se guarda la respuesta del
+            # estudiante
+        else:
+            form = obtener_form_respuesta_practica(request, ejercicio_practica, alumno)
+            bandera, puntaje = subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio_practica, context)
+            if bandera:
+                #return redirect(practica.get_absolute_url())
+                context['ultimo_puntaje'] = puntaje
+                context['redirigir'] = practica.get_absolute_url()
         return render(request, template, context)
 
 

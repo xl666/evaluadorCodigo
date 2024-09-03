@@ -6,3 +6,7 @@
 /bd.env
 .venv
 .venv/
+__pycache__/
+evaluador/__pycache__
+evaluador/__pycache__/buffer.cpython-312.pyc
+.pyc

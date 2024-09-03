@@ -28,14 +28,13 @@ INSTALLED_APPS = ['django.contrib.admin',
                   'django.contrib.sessions',
                   'django.contrib.messages',
                   'django.contrib.staticfiles',
-                  'bootstrap_datepicker_plus',
                   'evaluador_codigo',
                   'crispy_forms',
                   'crispy_bootstrap4',
                   'django_extensions',
                   'debug_toolbar',
                   'captcha'
-                  ]
+                  ] 
 
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware', 'django.contrib.sessions.middleware.SessionMiddleware',
               'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware',

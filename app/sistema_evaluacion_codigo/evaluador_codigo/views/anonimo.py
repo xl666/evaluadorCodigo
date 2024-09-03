@@ -147,14 +147,6 @@ def user_exist_database(username: str, email: str, matricula, is_student):
 
     return User_exist_response.NOT_EXIST
 
-def agregar_texto(texto):
-    try:
-        with open('logs.txt', 'a') as archivo:
-            archivo.write('\n' + texto)
-    except FileNotFoundError:
-        with open('logs.txt', 'w') as archivo:
-            archivo.write(texto)
-
 @logout_required
 def registrar_academico(request):
     template = "anonimo/registro_academico.html"

@@ -15,6 +15,35 @@
 				<span><strong>Evaluar ejercicio</strong></span>
 			</div>
 		</div>
+		{% if casos %}
+		<!-- Mostrar tabla solo si 'casos' está en el contexto -->
+		<div class="box-body">
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<thead class="thead-light">
+						<tr>
+							<th>Entrada</th>
+							<th>Resultado esperado</th>
+							<th>Paso prueba</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for caso in casos %}
+						<tr>
+							<td>{{ caso.0 }}</td>
+							<td>{{ caso.1 }}</td>
+							<td>{{ caso.2 }}</td>
+						</tr>
+						{% empty %}
+						<tr>
+							<td colspan="3" class="text-center">No hay casos de prueba disponibles.</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		{% endif %}
 		<form method='post' action="{% url 'ejercicio_evaluar' ejercicio.id%}?pk={{ejercicio.id}}" role="form"
 			  enctype="multipart/form-data">
 			<div class="box-body">

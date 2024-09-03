@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import shutil
 from django.core.files import File
 from django.shortcuts import get_object_or_404
+from django.core.files.storage import default_storage
 
 from api.evaluar_service import evaluar_service
 from .forms import *
@@ -60,10 +62,25 @@ def realizar_evaluacion(respuesta):
                                            respuesta.ejercicio.ejercicio.casos_prueba.path)
     return resultado_evaluacion
 
+def realizar_evaluacion_maestro(respuesta):
+    resultado_evaluacion = False
+    if (respuesta.archivo_respuesta_temporal.name.endswith('py') or respuesta.archivo_respuesta_temporal.name.endswith(
+        'prolog')):
+        resultado_evaluacion = evaluar_service(respuesta.archivo_respuesta_temporal.path,
+                                       respuesta.ejercicio.ejercicio.casos_prueba.path)
+    else:
+        resultado_compilacion, archivo_compilado = compile(respuesta.archivo_respuesta_temporal.path,
+                                                           respuesta.get_path())
+        if resultado_compilacion:
+            resultado_evaluacion = evaluar_service(respuesta.get_path_archivo(archivo_compilado),
+                                           respuesta.ejercicio.ejercicio.casos_prueba.path)
+    return resultado_evaluacion
+
 
 # Obtiene el puntaje obtenido por el alumno en su respuesta
 def calcular_puntaje_obtenido_respuesta(resultado_evaluacion, puntaje_ejercicio):
     casos_arr = resultado_evaluacion.strip().split('$#')
+    num_casos = len(casos_arr)
     casos_aprobados = 0
     for resultado in casos_arr:
         if resultado == "true":
@@ -310,6 +327,69 @@ def subir_respuesta_ejercicio(form, respuesta_anterior, ejercicio, context):
     else:
         context["form"] = form
         return False, 0
+    
+def evaluacion_maestro(form: EjercicioEvaluarForm, ejercicio : Ejercicio, context):
+    if form.is_valid():
+        archivo = form.cleaned_data['file']
+
+        archivo_temporal_path = default_storage.save(f'evaluacion_temp/{archivo.name}', archivo)
+        archivo_temporal_path = default_storage.url(archivo_temporal_path)
+
+        resultado_evaluacion = False
+        if (archivo.name.endswith('py')) or (archivo.name.endswith('prolog')):
+            resultado_evaluacion = evaluar_service(f'/code/media{archivo_temporal_path}', ejercicio.casos_prueba.path)
+        else:
+            resultado_compilacion, archivo_compilado = compile(archivo_temporal_path, archivo_temporal_path)       
+            if resultado_compilacion:
+                resultado_evaluacion = evaluar_service(archivo_temporal_path, ejercicio.casos_prueba.path) 
+        
+        shutil.rmtree('/code/media/evaluacion_temp')
+        entradas, resultados_esperados = obtener_ar_casos(ejercicio.casos_prueba.path)
+
+        casos = []
+
+        i = 0
+        for element in resultado_evaluacion.strip().split("$#"):
+            if element == "":
+                pass
+            else:
+                casos.append([entradas[i], resultados_esperados[i], element])
+                i+=1
+
+        return casos
+
+def obtener_ar_casos(path):
+    CASE_BREAK = '$$$$$$'
+    INPUT_BREAK = '!!!!!!'
+    entradas = []
+    resultados_esperados = []
+    entrada = ''
+    is_entrada = True
+    for line in open(path):
+        line = line.strip()
+        if(line == CASE_BREAK): #es la primera línea
+            continue
+
+        if(line == ''):
+            continue
+
+        if line == INPUT_BREAK:
+            entradas.append(entrada)
+            is_entrada = False
+            entrada = ''
+
+        elif not is_entrada:
+            resultados_esperados.append(line.strip())
+            is_entrada = True
+
+        else:
+            if line.strip().startswith('['):
+                entrada += line + '\n'
+            else:
+                for elem in line.split(','):
+                    entrada += elem + '\n'
+    
+    return [entradas, resultados_esperados]
 
 
 def obtener_informacion_academico(academico):

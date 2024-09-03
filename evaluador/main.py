@@ -6,8 +6,6 @@ import stat
 import shutil
 from evaluar import evaluar
 
-print("olaaa")
-
 SERVER_HOST = 'server'
 SERVER_PORT = 1234
 

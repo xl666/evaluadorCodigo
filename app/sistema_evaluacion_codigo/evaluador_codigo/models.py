@@ -426,6 +426,9 @@ class Alumno(models.Model):
     def get_puntajes_practicas(self):
         pass
 
+    def get_change_pass_url(self):
+        return reverse("cambiar_ps", args=[str(self.pk)])
+
 class Intentos(models.Model):
     ip = models.GenericIPAddressField(primary_key=True)
     intentos = models.PositiveBigIntegerField()
@@ -445,9 +448,20 @@ def get_upload_respuesta_temporal_practica(instance, filename):
                              str(instance.alumno.matricula), str(instance.ejercicio.ejercicio.id), filename)
     return file_path
 
+def get_upload_ejercicio_evaluar(instance, filename):
+    file_extension = os.path.splitext(filename)[1]
+    file_path = os.path.join("evaluar_temp", "evaluacion" + file_extension)
+
+    return file_path
+
 
 class EjercicioEvaluar(models.Model):
-    file = models.FileField()
+    ejercicio = models.ForeignKey(Ejercicio, on_delete=models.CASCADE)
+    file = models.FileField("Respuesta temporal",
+                                                  upload_to=get_upload_ejercicio_evaluar, null=True,
+                                                  blank=True, validators=[
+            FileExtensionValidator(allowed_extensions=['py', 'java', 'prolog', 'cpp', 'c', 'lisp', 'zip'])],
+                                                  storage=OverwriteStorage(), max_length=500)
 
 class RespuestasPracticas(models.Model):
     ejercicio = models.ForeignKey(EjerciciosPracticas, on_delete=models.CASCADE)

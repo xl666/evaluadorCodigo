@@ -96,12 +96,13 @@ def ver_listado_integrantes_curso(request, pk_curso):
         academico = get_object_or_404(Academico, user=request.user)
         context = obtener_informacion_academico(academico)
         curso = get_object_or_404(Curso, pk=pk_curso, academico=academico)
-        template = "academico/cursos/listado_integrantes.html"
+        context["is_academico"] = True
     elif request.user.is_student:
         alumno = get_object_or_404(Alumno, user=request.user)
         context = obtener_informacion_alumno(alumno)
         curso = obtener_curso_como_estudiante(pk_curso, alumno)
-        template = "alumno/cursos/listado_integrantes.html"
+        context["is_academico"] = False
+    template = "alumno/cursos/listado_integrantes.html"
     context["curso_activo"] = curso
     return render(request, template, context)
 
@@ -125,14 +126,3 @@ def ver_ayuda(request):
 def cerrar_sesion(request):
     logout(request)
     return redirect('inicio')
-
-def agregar_texto(texto):
-    try:
-        # Abre el archivo en modo de escritura para agregar texto
-        with open('logs.txt', 'a') as archivo:
-            # Escribe el texto en una nueva línea
-            archivo.write('\n' + texto)
-    except FileNotFoundError:
-        # Si el archivo no existe, crea uno nuevo y escribe el texto
-        with open('logs.txt', 'w') as archivo:
-            archivo.write(texto)

@@ -32,6 +32,14 @@
 				<h6 class="widget-user-desc">
 					{{ participante.user.email}}
 				</h6>
+				{% if is_academico %}
+					<div class="text-end mb-3">
+						<a href="{{ participante.get_change_pass_url }}" class="btn btn-primary">
+							<i class="fa fa-key" aria-hidden="true"></i> Cambiar contraseña
+						</a>
+					</div>
+				{% endif %}
+
 			</div>
 		</div>
 	</div>

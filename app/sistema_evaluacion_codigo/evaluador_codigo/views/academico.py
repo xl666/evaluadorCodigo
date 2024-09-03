@@ -68,7 +68,6 @@ def agregar_ejercicio(request):
         entradas = request.POST.getlist("entradas[]")
         salidas = request.POST.getlist("salidas[]")
         temas = request.POST.get("temas")
-        print(temas)
         print(request.POST.get("experiencias_educativas"))
         if form.is_valid():
             if not entradas or not salidas:
@@ -122,7 +121,6 @@ def agregar_examen(request, pk_curso):
             context["form"] = form
         return render(request, template, context)
 
-
 @login_required(login_url="/sec/login")
 @login_teacher_required
 def agregar_practica(request, pk_curso):
@@ -158,7 +156,7 @@ def agregar_practica(request, pk_curso):
         else:
             context["form"] = form
         return render(request, template, context)
- 
+
 
 @login_required(login_url="/sec/login")
 @login_teacher_required
@@ -183,23 +181,12 @@ def editar_curso(request, pk_curso):
                 context["error"] = "Error al almacenar el curso, verifique la información"
         return render(request, template, context)
 
-
-@login_required(login_url="/sec/login")
-@login_teacher_required
-def ver_detalle_ejercicio(request, id_ejercicio):
-    academico = get_object_or_404(Academico, user=request.user)
-    context = obtener_informacion_academico(academico)
-    ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio)
-    context["ejercicio"] = ejercicio
-    template = "academico/ejercicios/detalle.html"
-    return render(request, template, context) 
-
 @login_required(login_url="/sec/login")
 @login_teacher_required
 def editar_ejercicio(request, id_ejercicio):
     academico = get_object_or_404(Academico, user=request.user)
     context = obtener_informacion_academico(academico)
-    ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio, academico=academico)
+    ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio)
     form = EjercicioForm(instance=ejercicio)
     entradas, salidas = abrir_casos_prueba(ejercicio.casos_prueba.path)
     context["ejercicio"] = ejercicio
@@ -225,30 +212,34 @@ def editar_ejercicio(request, id_ejercicio):
         else:
             context["form"] = form
         return render(request, template, context)
+    
+@login_required(login_url="/sec/login")
+@login_teacher_required
+def ver_detalle_ejercicio(request, id_ejercicio):
+    academico = get_object_or_404(Academico, user=request.user)
+    context = obtener_informacion_academico(academico)
+    ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio)
+    context["ejercicio"] = ejercicio
+    template = "academico/ejercicios/detalle.html"
+    return render(request, template, context)
 
+@login_required(login_url="/sec/login")
+@login_teacher_required
 def evaluar_ejercicio(request, id_ejercicio):
     academico = get_object_or_404(Academico, user=request.user)
     context = obtener_informacion_academico(academico)
-    ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio, academico=academico)
+    ejercicio = get_object_or_404(Ejercicio, id=id_ejercicio)
     context["ejercicio"] = ejercicio
-    form = None
     template = "academico/ejercicios/evaluar.html"
-    if request.method == "POST":
-        form = EjercicioEvaluarForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Guarda el formulario y obtiene la instancia
-            instance = form.save()
-            # Extrae el nombre del archivo
-            file_name = instance.file.name
-            # Realiza alguna operación con el nombre del archivo
-            print(f'Archivo subido: {file_name}')
-            # Puedes hacer algo más con el archivo aquí
-        else:
-            form = EjercicioEvaluarForm()
-    elif request.method == "GET":
+    if request.method == "GET":
         form = EjercicioEvaluarForm()
+    elif request.method == "POST":
+        form = EjercicioEvaluarForm(request.POST or None, request.FILES or None)
+        casos_resultados = evaluacion_maestro(form, ejercicio, context)
+        context["casos"] = casos_resultados
     context["form"] = form
     return render(request, template, context)
+
     
 def write_to_file(text):
     with open('archivo.txt', 'a') as file:
@@ -564,12 +555,14 @@ def cambiar_pass(request, pk_estudiante):
     context = {}
     context["nombre_estudiante"] = usuario.first_name + ' ' + usuario.last_name
     context["pk_estudiante"] = pk_estudiante
-    template = "academico/estudiantes/editar_pass_estudiante.html"
+    template = "academico/alumnos/editar_pass_estudiante.html"
 
     
     if request.method == 'GET':
         form = PasswordForm()
         context['form'] = form
+        context['alumno_nombre'] = alumno.user.username
+        context['pk_estudiante>'] = alumno.pk
         return render(request, template, context)
     elif request.method == 'POST':
         form = PasswordForm(request.POST)
@@ -577,7 +570,7 @@ def cambiar_pass(request, pk_estudiante):
 
         if form.is_valid():
             password = form.cleaned_data['password']
-            conf_password = form.cleaned_data['conf_password']
+            conf_password = form.cleaned_data['confPassword']
 
             if (password == conf_password):
                 usuario.set_password(password)
@@ -587,3 +580,6 @@ def cambiar_pass(request, pk_estudiante):
             else:
                 context["error"] = "Las contraaseñas no coinciden"
                 return render(request, template, context)
+        else:
+            form = PasswordForm()
+            return render(request, template, context)

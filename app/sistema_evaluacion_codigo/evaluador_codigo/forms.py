@@ -1,9 +1,10 @@
+import re
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 from django import forms
 from django.core.validators import FileExtensionValidator
 from django.forms import ModelForm
 from captcha.fields import CaptchaField
-
+from django.core.exceptions import ValidationError
 from .models import Academico, Alumno, Curso, Ejercicio, Examen, Licenciatura, Practica, RespuestasExamenes, \
     RespuestasPracticas, User, EjercicioEvaluar
 
@@ -133,27 +134,25 @@ class EjercicioForm(ModelForm):
         fields = ["nombre", "experiencias_educativas", "temas", "descripcion", "entrada", "salida", "ejemplo_entrada",
                   "ejemplo_salida", "archivo_apoyo", "publico"]
 
-class EjercicioEvaluarForm(forms.ModelForm):
-    class Meta:
-        model = EjercicioEvaluar
-        fields = ["file"]
 
-
-class PracticaForm(ModelForm):
+class PracticaForm(forms.ModelForm):
     class Meta:
         model = Practica
         fields = ["nombre", "inicio", "termino", "descripcion"]
-        widgets = {  # Use localization and bootstrap 3
-            'inicio':  DateTimePickerInput(format='YYYY-MM-DD HH:mm:ss', attrs={'placeholder': 'YYYY-MM-DD hh:mm:ss'}),
-            'termino': DateTimePickerInput(format='YYYY-MM-DD HH:mm:ss', attrs={'placeholder': 'YYYY-MM-DD hh:mm:ss'})
-
-            }
+        widgets = {
+            'inicio': forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S', attrs={'placeholder': 'YYYY-MM-DD HH:MM:SS', 'type': 'datetime-local'}),
+            'termino': forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S', attrs={'placeholder': 'YYYY-MM-DD HH:MM:SS', 'type': 'datetime-local'})
+        }
 
 
 class ExamenForm(ModelForm):
     class Meta:
         model = Examen
         fields = ["nombre", "descripcion"]
+        widgets = {
+            'inicio': forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S', attrs={'placeholder': 'YYYY-MM-DD HH:MM:SS', 'type': 'datetime-local'}),
+            'termino': forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S', attrs={'placeholder': 'YYYY-MM-DD HH:MM:SS', 'type': 'datetime-local'})
+        }
 
 
 class RespuestasPracticasForm(ModelForm):
@@ -188,3 +187,54 @@ class RespuestasExamenesForm(ModelForm):
     class Meta:
         model = RespuestasExamenes
         fields = ["archivo_respuesta_temporal"]
+
+class EjercicioEvaluarForm(forms.ModelForm):
+    message = ("La extensión de archivo '%(extension)s' no está permitida. "
+               "Únicamente se permiten: '%(allowed_extensions)s'.")
+    file = forms.FileField(validators=[
+        FileExtensionValidator(allowed_extensions=['py', 'java', 'prolog', 'cpp', 'c', 'lisp', 'zip'],
+                               message=message)])
+
+    def __init__(self, *args, **kwargs):
+        super(EjercicioEvaluarForm, self).__init__(*args, **kwargs)
+        self.fields['file'].label = "Ejercicio a evaluar"
+        self.fields['file'].required = True
+
+    class Meta:
+        model = EjercicioEvaluar
+        fields = ["file"]
+
+def validate_password_strength(value):
+    if not re.search(r'[A-Z]', value):
+        raise ValidationError('La contraseña debe contener al menos una letra mayúscula.')
+    if not re.search(r'[a-z]', value):
+        raise ValidationError('La contraseña debe contener al menos una letra minúscula.')
+    if not re.search(r'[0-9]', value):
+        raise ValidationError('La contraseña debe contener al menos un número.')
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', value):
+        raise ValidationError('La contraseña debe contener al menos un carácter especial.')
+
+class PasswordForm(forms.Form):
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        label="Contraseña",
+        min_length=8,  # Puedes ajustar esto según tus necesidades
+        help_text="Debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y caracteres especiales.",
+        validators=[validate_password_strength]
+    )
+    confPassword = forms.CharField(
+        widget=forms.PasswordInput(),
+        label="Confirmar Contraseña",
+        min_length=8,
+        help_text="Debes ingresar la misma contraseña que arriba."
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        confPassword = cleaned_data.get("confPassword")
+
+        if password and confPassword and password != confPassword:
+            raise forms.ValidationError("Las contraseñas no coinciden.")
+
+        return cleaned_data
