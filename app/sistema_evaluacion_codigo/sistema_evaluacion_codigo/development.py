@@ -7,7 +7,7 @@ env_file = os.path.join(BASE_DIR, '.env')
 environ.Env.read_env(env_file)
 
 SECRET_KEY = env("SECRET_KEY_DEVELOPMENT")
-DEBUG = True
+DEBUG = False
 SESSION_COOKIE_HTTPONLY = True
 
 # Database

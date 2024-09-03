@@ -37,3 +37,12 @@ services:
       context: ./evaluador
     volumes:
       - ./evaluador:/app
+    networks:
+      - no-internet
+networks:
+  no-internet:
+    internal: true
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.1.1.0/24

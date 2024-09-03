@@ -17,7 +17,7 @@ INTERNAL_IPS = ["127.0.0.1"]
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8000",
+    "*",
 ]
 
 # Application definition
@@ -89,7 +89,7 @@ PATH_PREFIX = os.environ.get('PATH_PREFIX', '')
 STATIC_URL = '/static/'
 
 if PATH_PREFIX:
-    STATIC_URL = f'/{PATH_PREFIX}static/'
+    STATIC_URL = f'/{PATH_PREFIX}/static/'
 
 if PATH_PREFIX and not PATH_PREFIX.endswith('/'):
     PATH_PREFIX += '/'

@@ -240,17 +240,6 @@ def evaluar_ejercicio(request, id_ejercicio):
     context["form"] = form
     return render(request, template, context)
 
-    
-def write_to_file(text):
-    with open('archivo.txt', 'a') as file:
-        file.write(text + '\n')
-
-        
-
-def append_to_file(text):
-    with open('archivo.txt', 'a') as file:
-        file.write(text + '\n')
-
 
 @login_required(login_url="/sec/login")
 @login_teacher_required
